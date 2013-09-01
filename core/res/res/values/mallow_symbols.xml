@@ -53,9 +53,6 @@
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
 
-  <!-- System update service -->
-  <java-symbol type="array" name="config_forceEnabledComponents" />
-
   <!-- Global actions / reboot -->
   <java-symbol type="string" name="reboot_confirm" />
   <java-symbol type="string" name="reboot_title" />

@@ -21,4 +21,8 @@
     <!-- Sets whether IME switcher on statusbar should be shown or not. -->
     <bool name="config_show_IMESwitcher">true</bool>
 
+    <!-- The list of components which should be automatically disabled. -->
+    <string-array name="config_disabledComponents" translatable="false">
+    </string-array>
+
 </resources>
