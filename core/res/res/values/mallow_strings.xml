@@ -26,4 +26,19 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_setKeyguardWallpaper">Allows an app to change the lock screen wallpaper.</string>
 
+    <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">It appears your vendor image may be out of date. Please flash the latest vendor image for your device.</string>
+
+    <!-- label for item that reboots the phone in phone options dialog -->
+    <string name="global_action_reboot">Reboot</string>
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Reboot</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Recovery</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Bootloader</string>
+    <!-- Button to soft reboot the device, within the Reboot Options dialog -->
+    <string name="reboot_soft">Soft reboot</string>
+
+>>>>>>> b288287... framework: Add advanced reboot options (2 of 2)
 </resources>
