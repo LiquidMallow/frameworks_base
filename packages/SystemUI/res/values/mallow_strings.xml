@@ -252,9 +252,6 @@
     <string name="accessibility_quick_settings_heads_up_changed_off">Heads up turned off.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Heads up turned on.</string>
 
-    <!-- IME selector Tile -->
-    <string name="quick_settings_ime_label">IME</string>
-
     <!-- Music QS Tile -->
     <string name="quick_settings_music_label">Music</string>
     <string name="quick_settings_music_play">Play</string>
@@ -275,7 +272,6 @@
     <string name="quick_settings_expanded_desktop">Expanded</string>
     <string name="quick_settings_expanded_desktop_off">Normal</string>
 
-<<<<<<< HEAD:packages/SystemUI/res/values/mallow_strings.xml
     <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Compass</string>
     <string name="quick_settings_compass_value" translatable="false"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
@@ -284,20 +280,9 @@
     <string name="accessibility_quick_settings_compass_on">Compass on.</string>
     <string name="accessibility_quick_settings_compass_changed_off">Compass turned off.</string>
     <string name="accessibility_quick_settings_compass_changed_on">Compass turned on.</string>
-=======
+
     <!-- Sound QS Tile -->
     <string name="quick_settings_sound_label">Sound</string>
-    <string name="quick_settings_sound_ring">Ring</string>
-    <string name="quick_settings_sound_vibrate">Vibrate</string>
-    <string name="quick_settings_sound_silent">Silent</string>
-
-    <!-- Sync QS tile -->
-    <string name="quick_settings_sync_label">Sync</string>
-    <string name="accessibility_quick_settings_sync_off">Sync off</string>
-    <string name="accessibility_quick_settings_sync_on">Sync on</string>
-    <string name="accessibility_quick_settings_sync_changed_off">Sync turned off</string>
-    <string name="accessibility_quick_settings_sync_changed_on">Sync turned on</string>
->>>>>>> 8649785... Add Sound tile to Quick Settings:packages/SystemUI/res/values/screwd_strings.xml
 
     <!-- Themes QS Tile -->
     <string name="quick_settings_themes">Themes</string>
@@ -310,15 +295,13 @@
     <!-- IME selector Tile -->
     <string name="quick_settings_ime_label">IME</string>
 
-    <!-- USB tether QS tile -->
-    <string name="accessibility_quick_settings_usb_tether_off">USB tethering off</string>
-    <string name="accessibility_quick_settings_usb_tether_on">USB tethering on</string>
-    <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering turned off</string>
-    <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering turned on</string>
-    <string name="quick_settings_usb_tether_label">USB tethering</string>
-
     <!-- Volume QS Tile -->
     <string name="accessibility_quick_settings_volume_panel">Volume panel.</string>
     <string name="quick_settings_volume_panel_label">Volume panel</string>
+
+    <!-- NavBar QS Tile -->
+    <string name="quick_settings_navbar_label">NavBar</string>
+    <string name="quick_settings_navbar_on">NavBar On</string>
+    <string name="quick_settings_navbar_off">NavBar Off</string>
 
 </resources>
