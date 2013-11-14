@@ -74,6 +74,10 @@ public class KeyButtonRipple extends Drawable {
         mRippleColor = ctx.getResources().getColor(R.color.navbutton_ripple_color);
     }
 
+    public void setColor(int color) {
+        mRippleColor = color;
+    }
+
     private Paint getRipplePaint() {
         if (mRipplePaint == null) {
             mRipplePaint = new Paint();

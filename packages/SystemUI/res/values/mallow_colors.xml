@@ -44,4 +44,7 @@
     <color name="battery_background">#ffffff</color>
     <color name="status">#ffffff</color>
 
+    <!-- Navigation bar -->
+    <color name="navigationbar_button_default_color">#FFFFFFFF</color>
+
 </resources>
