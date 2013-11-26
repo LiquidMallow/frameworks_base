@@ -139,7 +139,6 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-
     <!-- Assist -->
     <uses-permission android:name="android.permission.ACCESS_VOICE_INTERACTION_SERVICE" />
 
@@ -158,6 +157,16 @@
     <uses-permission android:name="cyanogenmod.permission.ACCESS_THEME_MANAGER" />
     <uses-permission android:name="cyanogenmod.permission.READ_THEMES" />
     <uses-permission android:name="cyanogenmod.permission.WRITE_THEMES" />
+
+    <!-- Visualizer -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Action target -->
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+
+    <!-- Halo -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name=".SystemUIApplication"

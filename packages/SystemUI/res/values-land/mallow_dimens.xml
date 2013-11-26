@@ -17,6 +17,7 @@
 */
 -->
 <resources>
+
     <!-- Floating action button -->
     <dimen name="floating_action_button_height">56dp</dimen>
     <dimen name="floating_action_button_width">56dp</dimen>
@@ -31,5 +32,8 @@
 
     <!-- PA Pie -->
     <dimen name="pie_panel_padding">100dp</dimen>
+
+    <!-- Halo -->
+    <dimen name="halo_content_max_width">350dp</dimen>
 
 </resources>
