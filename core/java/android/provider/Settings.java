@@ -3211,13 +3211,13 @@ public final class Settings {
                 }
             }
         };
-
+		
         /**
-         * IMPORTANT: If you add a new public settings you also have to add it to
-         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
-         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
-         * the setting value. See an example above.
+         * Volume key controls ringtone or media sound stream
+         *
+         * @hide
          */
+        public static final String VOLUME_KEYS_CONTROL_MEDIA_STREAM = "volume_keys_control_media_stream";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
