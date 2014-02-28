@@ -609,7 +609,7 @@ public class UsbDeviceManager {
 
         private void updateAudioSourceFunction() {
             boolean enabled = UsbManager.containsFunction(mCurrentFunctions,
-                    UsbManager.USB_FUNCTION_AUDIO_SOURCE);
+                    UsbManager.USB_FUNCTION_AUDIO_SOURCE) && mConfigured;
             if (enabled != mAudioSourceEnabled) {
                 int card = -1;
                 int device = -1;
