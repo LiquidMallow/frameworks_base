@@ -169,6 +169,12 @@
             android:process=":screenshot"
             android:exported="false" />
 
+ 	    <!-- started from PhoneWindowManager
+             TODO: Should have an android:permission attribute -->
+        <service android:name=".nameless.onthego.OnTheGoService"
+            android:process=":onthego"
+            android:exported="false" />
+
         <service android:name=".LoadAverageService"
                 android:exported="true" />
 
@@ -441,3 +447,4 @@
         </activity>
     </application>
 </manifest>
+

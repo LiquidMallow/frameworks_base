@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2015 MallowRom
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- The min animation duration for animating the task bar in. -->
+    <integer name="recents_animate_task_bar_enter_duration">225</integer>
+    <!-- The animation delay for animating the first task in. This should roughly be the animation
+     duration of the transition in to recents. -->
+    <integer name="recents_animate_task_bar_enter_delay">275</integer>
+    <!-- The min animation duration for animating the task bar out. -->
+    <integer name="recents_animate_task_bar_exit_duration">125</integer>
+
+    <!-- Enable PA Pie relocation to either stick to a physical side or default to the right side -->
+    <bool name="config_relocatePieOnRotation">true</bool>
+
+    <!-- Enable force PA Pie centered -->
+    <bool name="config_forcePieCentered">true</bool>
+
+    <!-- Sensivity of pie gestures controlls.
+        Must be minimum 1 and maximum 10 (See @EdgeServiceConstants.java).
+        Default for pie is high sensivity -->
+    <integer name="pie_gesture_sensivity">10</integer>
+
+   <!-- On-The-Go -->
+   <integer name="quick_settings_onthego_dialog_short_timeout">3000</integer>
+   <integer name="quick_settings_onthego_dialog_long_timeout">6000</integer>
+
+</resources>
