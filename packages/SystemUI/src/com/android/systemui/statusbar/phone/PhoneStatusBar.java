@@ -879,6 +879,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 		
 	if (!mRecreating) {
             addGestureAnywhereView();
+            addAppCircleSidebar();
         }
 
         mAssistManager = new AssistManager(this, context);
@@ -888,15 +889,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 (NavigationBarView) View.inflate(context, R.layout.navigation_bar, null);
         }
 
-        mNavigationBarView.setDisabledFlags(mDisabled1);
         mNavigationBarView.setBar(this);
         mNavigationBarView.setOnVerticalChangedListener(
                 new NavigationBarView.OnVerticalChangedListener() {
             @Override
             public void onVerticalChanged(boolean isVertical) {
-                if (mAssistManager != null) {
-                    mAssistManager.onConfigurationChanged();
-                }
                 mNotificationPanel.setQsScrimEnabled(!isVertical);
             }
         });
