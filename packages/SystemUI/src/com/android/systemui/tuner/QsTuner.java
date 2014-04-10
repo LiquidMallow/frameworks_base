@@ -225,6 +225,7 @@ public class QsTuner extends Fragment implements Callback {
 		else if (spec.equals("navbar")) return R.string.quick_settings_navbar_label;
 		else if (spec.equals("pie")) return R.string.quick_settings_pie_label;
         else if (spec.equals("lockscreen")) return R.string.quick_settings_lockscreen_label;
+	    else if (spec.equals("float_mode")) return R.string.recent_float_mode_title;
         return 0;
     }
 
@@ -486,6 +487,7 @@ public class QsTuner extends Fragment implements Callback {
 			else if (mSpec.equals("navbar")) return R.drawable.ic_qs_navbar_on;
 			else if (mSpec.equals("pie")) return R.drawable.ic_qs_pie_on;
             else if (mSpec.equals("lockscreen")) return R.drawable.ic_qs_lock_screen_on;
+	        else if (mSpec.equals("float_mode")) return R.drawable.ic_qs_floating_on;
             return R.drawable.android;
         }
 
@@ -579,5 +581,4 @@ public class QsTuner extends Fragment implements Callback {
             return false;
         }
     }
-
 }

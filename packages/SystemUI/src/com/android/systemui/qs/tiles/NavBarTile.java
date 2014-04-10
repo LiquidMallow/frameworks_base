@@ -61,7 +61,7 @@ public class NavBarTile extends QSTile<QSTile.BooleanState> {
     protected void handleSecondaryClick() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setClassName("com.android.settings",
-            "com.android.settings.Settings$NavBarActivity");
+            "com.android.settings.Settings$NavigationBarActivity");
         mHost.startActivityDismissingKeyguard(intent);
     }
 
@@ -69,7 +69,7 @@ public class NavBarTile extends QSTile<QSTile.BooleanState> {
     public void handleLongClick() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setClassName("com.android.settings",
-            "com.android.settings.Settings$NavBarActivity");
+            "com.android.settings.Settings$NavigationBarActivity");
         mHost.startActivityDismissingKeyguard(intent);
     }
 
