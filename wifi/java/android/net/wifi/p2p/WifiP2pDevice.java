@@ -44,6 +44,12 @@ public class WifiP2pDevice implements Parcelable {
     public String deviceAddress = "";
 
     /**
+     * The interface MAC address used by client within a group
+     * @hide
+     */
+    public String interfaceAddress = "";
+
+    /**
      * Primary device type identifies the type of device. For example, an application
      * could filter the devices discovered to only display printers if the purpose is to
      * enable a printing action from the user. See the Wi-Fi Direct technical specification
@@ -144,7 +150,7 @@ public class WifiP2pDevice implements Parcelable {
      *  AP-STA-DISCONNECTED 42:fc:89:a8:96:09 p2p_dev_addr=fa:7b:7a:42:02:13
      */
     private static final Pattern threeTokenPattern = Pattern.compile(
-        "(?:[0-9a-f]{2}:){5}[0-9a-f]{2} p2p_dev_addr=((?:[0-9a-f]{2}:){5}[0-9a-f]{2})"
+        "((?:[0-9a-f]{2}:){5}[0-9a-f]{2}) p2p_dev_addr=((?:[0-9a-f]{2}:){5}[0-9a-f]{2})"
     );
 
 
@@ -193,7 +199,8 @@ public class WifiP2pDevice implements Parcelable {
                 if (!match.find()) {
                     throw new IllegalArgumentException("Malformed supplicant event");
                 }
-                deviceAddress = match.group(1);
+                deviceAddress = match.group(2);
+                interfaceAddress = match.group(1);
                 return;
             default:
                 match = detailedDevicePattern.matcher(string);
@@ -201,6 +208,7 @@ public class WifiP2pDevice implements Parcelable {
                     throw new IllegalArgumentException("Malformed supplicant event");
                 }
 
+                interfaceAddress = match.group(1);
                 deviceAddress = match.group(3);
                 primaryDeviceType = match.group(4);
                 deviceName = match.group(5);
@@ -309,6 +317,7 @@ public class WifiP2pDevice implements Parcelable {
         StringBuffer sbuf = new StringBuffer();
         sbuf.append("Device: ").append(deviceName);
         sbuf.append("\n deviceAddress: ").append(deviceAddress);
+        sbuf.append("\n interfaceAddress: ").append(interfaceAddress);
         sbuf.append("\n primary type: ").append(primaryDeviceType);
         sbuf.append("\n secondary type: ").append(secondaryDeviceType);
         sbuf.append("\n wps: ").append(wpsConfigMethodsSupported);
@@ -329,6 +338,7 @@ public class WifiP2pDevice implements Parcelable {
         if (source != null) {
             deviceName = source.deviceName;
             deviceAddress = source.deviceAddress;
+            interfaceAddress = source.interfaceAddress;
             primaryDeviceType = source.primaryDeviceType;
             secondaryDeviceType = source.secondaryDeviceType;
             wpsConfigMethodsSupported = source.wpsConfigMethodsSupported;
@@ -343,6 +353,7 @@ public class WifiP2pDevice implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(deviceName);
         dest.writeString(deviceAddress);
+        dest.writeString(interfaceAddress);
         dest.writeString(primaryDeviceType);
         dest.writeString(secondaryDeviceType);
         dest.writeInt(wpsConfigMethodsSupported);
@@ -364,6 +375,7 @@ public class WifiP2pDevice implements Parcelable {
                 WifiP2pDevice device = new WifiP2pDevice();
                 device.deviceName = in.readString();
                 device.deviceAddress = in.readString();
+                device.interfaceAddress = in.readString();
                 device.primaryDeviceType = in.readString();
                 device.secondaryDeviceType = in.readString();
                 device.wpsConfigMethodsSupported = in.readInt();

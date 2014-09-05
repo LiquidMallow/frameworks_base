@@ -94,6 +94,7 @@ public class WifiP2pDeviceList implements Parcelable {
         WifiP2pDevice d = mDevices.get(device.deviceAddress);
         if (d != null) {
             d.deviceName = device.deviceName;
+            d.interfaceAddress = device.interfaceAddress;
             d.primaryDeviceType = device.primaryDeviceType;
             d.secondaryDeviceType = device.secondaryDeviceType;
             d.wpsConfigMethodsSupported = device.wpsConfigMethodsSupported;
