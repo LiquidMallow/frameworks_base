@@ -160,6 +160,9 @@ final class WifiDisplayController implements DumpUtils.Dump {
 
     private WifiP2pDevice mThisDevice;
 
+    // Content Protection bit
+    private final boolean mIsCP;
+
     public WifiDisplayController(Context context, Handler handler, Listener listener) {
         mContext = context;
         mHandler = handler;
@@ -174,6 +177,11 @@ final class WifiDisplayController implements DumpUtils.Dump {
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
         context.registerReceiver(mWifiP2pReceiver, intentFilter, null, mHandler);
+
+        // Platforms which supports hdcp will have WifiDisplaySupportsProtectedBuffers
+        // set to true, so will set the CP bit in updateWfdEnableState call.
+        mIsCP = context.getResources().getBoolean(
+                com.android.internal.R.bool.config_wifiDisplaySupportsProtectedBuffers);
 
         ContentObserver settingsObserver = new ContentObserver(mHandler) {
             @Override
@@ -231,6 +239,7 @@ final class WifiDisplayController implements DumpUtils.Dump {
         pw.println("mAdvertisedDisplayWidth=" + mAdvertisedDisplayWidth);
         pw.println("mAdvertisedDisplayHeight=" + mAdvertisedDisplayHeight);
         pw.println("mAdvertisedDisplayFlags=" + mAdvertisedDisplayFlags);
+        pw.println("mIsCP=" + mIsCP);
 
         pw.println("mAvailableWifiDisplayPeers: size=" + mAvailableWifiDisplayPeers.size());
         for (WifiP2pDevice device : mAvailableWifiDisplayPeers) {
@@ -288,6 +297,7 @@ final class WifiDisplayController implements DumpUtils.Dump {
                 wfdInfo.setSessionAvailable(true);
                 wfdInfo.setControlPort(DEFAULT_CONTROL_PORT);
                 wfdInfo.setMaxThroughput(MAX_THROUGHPUT);
+                wfdInfo.setContentProtectionSupported(mIsCP);
                 mWifiP2pManager.setWFDInfo(mWifiP2pChannel, wfdInfo, new ActionListener() {
                     @Override
                     public void onSuccess() {

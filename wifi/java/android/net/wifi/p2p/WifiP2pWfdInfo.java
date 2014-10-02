@@ -48,6 +48,7 @@ public class WifiP2pWfdInfo implements Parcelable {
     private static final int SESSION_AVAILABLE                      = 0x30;
     private static final int SESSION_AVAILABLE_BIT1                 = 0x10;
     private static final int SESSION_AVAILABLE_BIT2                 = 0x20;
+    private static final int CP_BIT                                 = 0x100;
 
     private int mCtrlPort;
 
@@ -61,6 +62,18 @@ public class WifiP2pWfdInfo implements Parcelable {
         mDeviceInfo = devInfo;
         mCtrlPort = ctrlPort;
         mMaxThroughput = maxTput;
+    }
+
+    public boolean isContentProtectionSupported() {
+        return (mDeviceInfo & CP_BIT) != 0;
+    }
+
+    public void setContentProtectionSupported(boolean enabled) {
+        if (enabled) {
+            mDeviceInfo |= CP_BIT;
+        } else {
+            mDeviceInfo &= ~CP_BIT;
+        }
     }
 
     public boolean isWfdEnabled() {
