@@ -1128,6 +1128,7 @@ public class Tethering extends BaseNetworkObserver {
 
         void setLastErrorAndTransitionToInitialState(int error) {
             setLastError(error);
+            mTetherMasterSM.sendMessage(TetherMasterSM.CMD_CLEAR_ERROR);
             transitionTo(mInitialState);
         }
 
@@ -1144,6 +1145,8 @@ public class Tethering extends BaseNetworkObserver {
         static final int CMD_CELL_CONNECTION_RENEW   = 4;
         // we don't have a valid upstream conn, check again after a delay
         static final int CMD_RETRY_UPSTREAM          = 5;
+        // we treated the error and want now to clear it
+        static final int CMD_CLEAR_ERROR             = 6;
 
         // This indicates what a timeout event relates to.  A state that
         // sends itself a delayed timeout event and handles incoming timeout events
@@ -1625,6 +1628,10 @@ public class Tethering extends BaseNetworkObserver {
                     case CMD_TETHER_MODE_REQUESTED:
                         TetherInterfaceSM who = (TetherInterfaceSM)message.obj;
                         who.sendMessage(mErrorNotification);
+                        break;
+                    case CMD_CLEAR_ERROR:
+                        mErrorNotification = ConnectivityManager.TETHER_ERROR_NO_ERROR;
+                        transitionTo(mInitialState);
                         break;
                     default:
                        retValue = false;
