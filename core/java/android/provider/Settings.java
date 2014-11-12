@@ -4471,6 +4471,12 @@ public final class Settings {
          */
         public static final String RECENTS_FULL_SCREEN = "recents_full_screen";
 
+		/**
+		 * Enable/Disable screenshot sound
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
+
         /**
          * Display second in the Clock
          * @hide
