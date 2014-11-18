@@ -36,6 +36,7 @@ import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowManagerGlobal;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.systemui.R;
@@ -347,6 +348,14 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
         Rect taskStackBounds = new Rect();
         mConfig.getAvailableTaskStackBounds(width, height, mConfig.systemInsets.top,
                 mConfig.systemInsets.right, searchBarSpaceBounds, taskStackBounds);
+
+        if (mClearRecents != null) {
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
+                    mClearRecents.getLayoutParams();
+
+            params.bottomMargin = mConfig.systemInsets.bottom;
+            mClearRecents.setLayoutParams(params);
+        }
 
         // Measure each TaskStackView with the full width and height of the window since the
         // transition view is a child of that stack view
