@@ -17,6 +17,8 @@
 package com.android.systemui.statusbar.phone;
 
 
+import static com.android.systemui.settings.BrightnessController.BRIGHTNESS_ADJ_RESOLUTION;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
@@ -32,6 +34,7 @@ import android.app.StatusBarManager;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks2;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -124,7 +127,6 @@ import com.android.internal.util.slim.ActionConfig;
 import com.android.internal.util.slim.ActionConstants;
 import com.android.internal.util.slim.ActionHelper;
 import com.android.internal.util.slim.DeviceUtils;
-
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.BatteryLevelTextView;
 import com.android.systemui.DemoMode;
@@ -138,6 +140,7 @@ import com.android.systemui.doze.DozeLog;
 import com.android.systemui.keyguard.KeyguardViewMediator;
 import com.android.systemui.qs.QSPanel;
 import com.android.systemui.recents.ScreenPinningRequest;
+import com.android.systemui.settings.BrightnessController;
 import com.android.systemui.statusbar.ActivatableNotificationView;
 import com.android.systemui.statusbar.BackDropView;
 import com.android.systemui.statusbar.BaseStatusBar;
@@ -350,6 +353,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // Keyguard is going away soon.
     private boolean mKeyguardGoingAway;
     // Keyguard is actually fading away now.
+
+    // Status bar brightness
+    private int mStatusBarHeaderHeight;
+
     private boolean mKeyguardFadingAway;
     private boolean mKeyguardShowingMedia;
     private long mKeyguardFadingAwayDelay;
@@ -441,7 +448,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_ROTATION),
-                    false, this, UserHandle.USER_ALL);		
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.USE_SLIM_RECENTS), false, this,
                     UserHandle.USER_ALL);
@@ -471,7 +478,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.MENU_VISIBILITY),
-                    false, this, UserHandle.USER_ALL);				
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -2614,7 +2621,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     ServiceManager.getService("power"));
             if (power != null) {
                 if (mAutomaticBrightness) {
-                    float adj = (2 * value) - 1;
+                    float adj = (value * 100) / (BRIGHTNESS_ADJ_RESOLUTION / 2f) - 1;
                     adj = Math.max(adj, -1);
                     adj = Math.min(adj, 1);
                     final float val = adj;
@@ -2636,7 +2643,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     AsyncTask.execute(new Runnable() {
                         @Override
                         public void run() {
-                            Settings.System.putIntForUser(mContext.getContentResolver(),
+                            Settings.System.putFloatForUser(mContext.getContentResolver(),
                                     Settings.System.SCREEN_BRIGHTNESS, val,
                                     UserHandle.USER_CURRENT);
                         }
@@ -4772,6 +4779,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
     }
+
     public void notifyFpAuthModeChanged() {
         updateDozing();
     }
