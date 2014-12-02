@@ -23,6 +23,7 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.app.ActivityManager;
 import android.app.StatusBarManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
@@ -45,7 +46,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.android.internal.logging.MetricsLogger;
+import com.android.internal.widget.LockPatternUtils;
 import com.android.keyguard.KeyguardStatusView;
+import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.systemui.DejankUtils;
 import com.android.systemui.EventLogConstants;
 import com.android.systemui.EventLogTags;
@@ -126,6 +129,7 @@ public class NotificationPanelView extends PanelView implements
     private boolean mQsExpandedWhenExpandingStarted;
     private boolean mQsFullyExpanded;
     private boolean mKeyguardShowing;
+    private boolean mKeyguardOrShadeShowing;
     private boolean mDozing;
     private boolean mDozingOnDown;
     private int mStatusBarState;
@@ -204,6 +208,9 @@ public class NotificationPanelView extends PanelView implements
     private boolean mHeadsUpAnimatingAway;
     private boolean mLaunchingAffordance;
     private String mLastCameraLaunchSource = KeyguardBottomAreaView.CAMERA_LAUNCH_SOURCE_AFFORDANCE;
+    private LockPatternUtils mLockPatternUtils;
+
+    private boolean mStatusBarLockedOnSecureKeyguard;
 
     private Runnable mHeadsUpExistenceChangedRunnable = new Runnable() {
         @Override
@@ -220,6 +227,7 @@ public class NotificationPanelView extends PanelView implements
     public NotificationPanelView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(!DEBUG);
+        mLockPatternUtils = new LockPatternUtils(mContext);
     }
 
     public void setStatusBar(PhoneStatusBar bar) {
@@ -467,9 +475,14 @@ public class NotificationPanelView extends PanelView implements
         requestLayout();
     }
 
+    private boolean isQSEventBlocked() {
+        return mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser())
+            && mStatusBarLockedOnSecureKeyguard && mKeyguardOrShadeShowing;
+    }
+
     public void setQsExpansionEnabled(boolean qsExpansionEnabled) {
-        mQsExpansionEnabled = qsExpansionEnabled;
-        mHeader.setClickable(qsExpansionEnabled);
+        mQsExpansionEnabled = qsExpansionEnabled && !isQSEventBlocked();
+        mHeader.setClickable(mQsExpansionEnabled);
     }
 
     @Override
@@ -990,11 +1003,14 @@ public class NotificationPanelView extends PanelView implements
             boolean goingToFullShade) {
         int oldState = mStatusBarState;
         boolean keyguardShowing = statusBarState == StatusBarState.KEYGUARD;
+        boolean keyguardOrShadeShowing = statusBarState == StatusBarState.KEYGUARD
+                || statusBarState == StatusBarState.SHADE_LOCKED;
         setKeyguardStatusViewVisibility(statusBarState, keyguardFadingAway, goingToFullShade);
         setKeyguardBottomAreaVisibility(statusBarState, goingToFullShade);
 
         mStatusBarState = statusBarState;
         mKeyguardShowing = keyguardShowing;
+        mKeyguardOrShadeShowing = keyguardOrShadeShowing;
 
         if (goingToFullShade || (oldState == StatusBarState.KEYGUARD
                 && statusBarState == StatusBarState.SHADE_LOCKED)) {
@@ -2445,5 +2461,41 @@ public class NotificationPanelView extends PanelView implements
         ActivityManager am = getContext().getSystemService(ActivityManager.class);
         List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
         return !tasks.isEmpty() && pkgName.equals(tasks.get(0).topActivity.getPackageName());
+<<<<<<< HEAD
+=======
+
+    private class SettingsObserver extends UserContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void observe() {
+            super.observe();
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_QUICK_PULLDOWN), false, this, UserHandle.USER_ALL);
+			resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD),
+                    false, this, UserHandle.USER_ALL);	
+            update();
+        }
+
+        @Override
+        protected void unobserve() {
+            super.unobserve();
+            mContext.getContentResolver().unregisterContentObserver(this);
+        }
+
+        @Override
+        public void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            mOneFingerQuickSettingsIntercept = Settings.System.getIntForUser(resolver,
+                    Settings.System.QS_QUICK_PULLDOWN, 0, UserHandle.USER_CURRENT);
+			mStatusBarLockedOnSecureKeyguard = Settings.Secure.getIntForUser(
+                    resolver, Settings.Secure.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD, 0,
+                    UserHandle.USER_CURRENT) == 1;		
+        }
+>>>>>>> b5182e8... Disable Quick Settings on secure lockscreen (1/2)
     }
 }
