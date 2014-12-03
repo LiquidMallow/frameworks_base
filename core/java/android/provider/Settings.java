@@ -4685,20 +4685,20 @@ public final class Settings {
          */
         public static final String SAFE_HEADSET_VOLUME = "safe_headset_volume";
 
-		/**
-		 * whether to enable torch on lockscreen
+	/**
+	 * whether to enable torch on lockscreen
          * @hide
          */
         public static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
 
-	    /**
+	/**
          * show the membar in recents
          *  @hide
          */
         public static final String SYSTEMUI_RECENTS_MEM_DISPLAY = "systemui_recents_mem_display";
 
-		/**
-		 * change lockscreen alpha color
+	/**
+	 * change lockscreen alpha color
          * @hide
          */
         public static final String LOCKSCREEN_ALPHA = "lockscreen_alpha";
@@ -4713,6 +4713,12 @@ public final class Settings {
          * @hide
          */
         public static final String PA_PIE_ALWAYS_RIGHT = "pa_pie_always_right";
+	
+        /**
+         * Quick Settings Smart Pulldown
+         * @hide
+         */
+        public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
