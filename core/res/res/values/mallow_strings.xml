@@ -39,6 +39,7 @@
     <string name="reboot_bootloader">Bootloader</string>
     <!-- Button to soft reboot the device, within the Reboot Options dialog -->
     <string name="reboot_soft">Soft reboot</string>
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">Screenshot</string>
 
->>>>>>> b288287... framework: Add advanced reboot options (2 of 2)
 </resources>
