@@ -3831,10 +3831,10 @@ public final class Settings {
         public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
         /**
-         * Disabled Transition animations of the android system
+         * Whether navigation bar is placed on the left side in landscape mode
          * @hide
          */
-        public static final String DISABLE_TRANSITION_ANIMATIONS = "disable_transition_animations";
+        public static final String NAVBAR_LEFT_IN_LANDSCAPE = "navigation_bar_left";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
