@@ -24,88 +24,6 @@
     <!-- The text for the button in the notification window-shade that clears
          all of the currently visible notifications. [CHAR LIMIT=10]-->
     <string name="clear_recents">Close all recent</string>
-<<<<<<< HEAD:packages/SystemUI/res/values/mallow_strings.xml
-=======
-    
-    <!-- Battery Saver Dimss -->
-    <string name="battery_saver_dismiss_title">Dismiss</string>
-    <string name="battery_saver_notification_action_text_short">Turn off</string>
-    
-    <!-- Screenshot Delete Toast -->
-    <string name="delete_screenshot_toast">Screenshot Deleted</string>
-
-    <!-- ADB over network Tile -->
-    <string name="quick_settings_adb_network">ADB network</string>
-    <string name="quick_settings_network_adb_enabled_label">Enabled</string>
-    <string name="quick_settings_network_adb_disabled_label">Disabled</string>
-    <string name="accessibility_quick_settings_network_adb_off">ADB over network off.</string>
-    <string name="accessibility_quick_settings_network_adb_on">ADB over network on.</string>
-    <string name="accessibility_quick_settings_network_adb_changed_off">ADB over network turned off.</string>
-    <string name="accessibility_quick_settings_network_adb_changed_on">ADB over network turned on.</string>
-
-    <!-- Ambient Display QS tile -->
-    <string name="accessibility_quick_settings_ambient_display_off">Ambient Display off</string>
-    <string name="accessibility_quick_settings_ambient_display_on">Ambient Display on</string>
-    <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display turned off</string>
-    <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display turned on</string>
-    <string name="quick_settings_ambient_display_label">Ambient Display</string>
-
-    <!-- Battery Saver QS Tile -->
-    <string name="quick_settings_battery_saver">Battery saver</string>
-    <string name="accessibility_quick_settings_battery_saver_off">Battery saver off.</string>
-    <string name="accessibility_quick_settings_battery_saver_on">Battery saver on.</string>
-    <string name="accessibility_quick_settings_battery_saver_changed_off">Battery saver turned off.</string>
-    <string name="accessibility_quick_settings_battery_saver_changed_on">Battery saver turned on.</string>
-
-    <!-- Brightness QS Tile -->
-    <string name="quick_settings_brightness">Brightness</string>
-
-    <!-- Expanded Desktop QS Tile -->
-    <string name="quick_settings_expanded_desktop">Expanded</string>
-    <string name="quick_settings_expanded_desktop_off">Normal</string>
-
-    <!-- Music QS Tile -->
-    <string name="quick_settings_music_label">Music</string>
-    <string name="quick_settings_music_play">Play</string>
-    <string name="quick_settings_music_pause">Pause</string>
-
-    <!-- NFC QS tile -->
-    <string name="quick_settings_nfc_label">NFC</string>
-
-    <!-- Reboot/Recovery QS Tile -->
-    <string name="quick_settings_reboot_label">Reboot</string>
-    <string name="quick_settings_reboot_recovery_label">Recovery</string>
-
-    <!-- Screenshot QS tile -->
-    <string name="quick_settings_screenshot_label">Screenshot</string>
-
-    <!-- Screen off QS tile -->
-    <string name="quick_settings_screen_off">Screen off</string>
-
-    <!-- Screen timeout QS tile -->
-    <string name="quick_settings_timeout_label">Timeout</string>
-    <string name="quick_settings_screen_timeout_detail_title">Screen timeout</string>
-    <string name="accessibility_quick_settings_screen_timeout">Screen timeout: <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
-    <string name="accessibility_quick_settings_screen_timeout_changed">Screen timeout changed to <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
-
-    <!-- Sync QS tile -->
-    <string name="quick_settings_sync_label">Sync</string>
-    <string name="accessibility_quick_settings_sync_off">Sync off</string>
-    <string name="accessibility_quick_settings_sync_on">Sync on</string>
-    <string name="accessibility_quick_settings_sync_changed_off">Sync turned off</string>
-    <string name="accessibility_quick_settings_sync_changed_on">Sync turned on</string>
-
-    <!-- USB tether QS tile -->
-    <string name="accessibility_quick_settings_usb_tether_off">USB tethering off</string>
-    <string name="accessibility_quick_settings_usb_tether_on">USB tethering on</string>
-    <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering turned off</string>
-    <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering turned on</string>
-    <string name="quick_settings_usb_tether_label">USB tethering</string>
-
-    <!-- Weather string format in expanded statusbar header -->
-    <string name="status_bar_expanded_header_weather_format"><xliff:g id="temp">%1$s</xliff:g> - <xliff:g id="condition">%2$s</xliff:g></string>
-    <string name="weather_info_not_available">Weather information is unavailable.</string>
->>>>>>> 9d21b6b... Add adb over network QS Tile:packages/SystemUI/res/values/screwd_strings.xml
 
     <!-- Strings for lockscreen shortcut hints -->
     <string name="left_shortcut_hint">Swipe right for %1$s</string>
@@ -278,5 +196,14 @@
     <!-- Expanded Desktop QS Tile -->
     <string name="quick_settings_expanded_desktop">Expanded</string>
     <string name="quick_settings_expanded_desktop_off">Normal</string>
+
+    <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">Compass</string>
+    <string name="quick_settings_compass_value" translatable="false"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Initializing\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Compass off.</string>
+    <string name="accessibility_quick_settings_compass_on">Compass on.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Compass turned off.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Compass turned on.</string>
 
 </resources>
