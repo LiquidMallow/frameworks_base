@@ -98,6 +98,10 @@
 
     <!-- Alarm clocks -->
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    
+    <!-- Sync tile -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
     <!-- Keyguard -->
     <uses-permission android:name="android.permission.CONTROL_KEYGUARD" />
