@@ -8675,6 +8675,15 @@ public final class Settings {
                 "zen_disable_ducking_during_media_playback";
 
         /**
+         * Defines global runtime overrides to window policy style.
+         *
+         * See {@link android.view.WindowManagerPolicyControl} for value definitions.
+         *
+         * @hide
+         */
+        public static final String POLICY_CONTROL_STYLE = "policy_control_style";
+
+        /**
          * Defines global runtime overrides to window policy.
          *
          * See {@link android.view.WindowManagerPolicyControl} for value format.
