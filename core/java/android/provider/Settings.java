@@ -7787,13 +7787,10 @@ public final class Settings {
         public static final String WIFI_BOUNCE_DELAY_OVERRIDE_MS = "wifi_bounce_delay_override_ms";
 
         /**
-         * Defines global runtime overrides to window policy.
-         *
-         * See {@link com.android.server.policy.PolicyControl} for value format.
-         *
          * @hide
          */
-        public static final String POLICY_CONTROL = "policy_control";
+        public static final String ZEN_DISABLE_DUCKING_DURING_MEDIA_PLAYBACK =
+                "zen_disable_ducking_during_media_playback";
 
         /**
          * Defines global zen mode.  ZEN_MODE_OFF, ZEN_MODE_IMPORTANT_INTERRUPTIONS,
