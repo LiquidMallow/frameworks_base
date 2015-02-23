@@ -4574,13 +4574,24 @@ public final class Settings {
          */
         public static final String IMMERSIVE_RECENTS = "immersive_recents";
 
-		/**
+	/**
          * Whether to display the trigger region or not
          *
          * Whether to dim the navigation bar icons after inactivity
          * @hide
          */
         public static final String DIM_NAV_BUTTONS = "dim_nav_buttons";
+
+        /**
+         * Quick Settings Quick Pulldown
+         * 0 = off, 1 = right, 2 = left
+         * @hide
+         */
+        public static final String QS_QUICK_PULLDOWN = "qs_quick_pulldown";
+
+        /** @hide */
+        private static final Validator QS_QUICK_PULLDOWN_VALIDATOR =
+                new InclusiveIntegerRangeValidator(0, 2);
 
         /**
          * Time in milliseconds to wait before dimming the nav buttons
@@ -4702,15 +4713,6 @@ public final class Settings {
          * @hide
          */
         public static final String PA_PIE_ALWAYS_RIGHT = "pa_pie_always_right";
-
-        /** Whether to allow one finger quick settings expansion on the right side of the statusbar.
-         *
-         * @hide
-         */
-        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
-
-        /** @hide */
-        public static final Validator STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR = sBooleanValidator;
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -4872,7 +4874,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCK_TO_APP_ENABLED);
             PRIVATE_SETTINGS.add(EGG_MODE);
 	    PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
-            PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
+            PRIVATE_SETTINGS.add(QS_QUICK_PULLDOWN);
         }
 
         /**

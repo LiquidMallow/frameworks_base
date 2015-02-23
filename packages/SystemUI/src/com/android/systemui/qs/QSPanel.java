@@ -21,7 +21,6 @@ import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorListenerAdapter;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.database.ContentObserver;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;

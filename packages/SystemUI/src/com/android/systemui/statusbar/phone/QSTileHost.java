@@ -211,7 +211,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
     public SecurityController getSecurityController() {
         return mSecurity;
     }
-    
+
     @Override
     public void onTuningChanged(String key, String newValue) {
         if (!TILES_SETTING.equals(key)) {
