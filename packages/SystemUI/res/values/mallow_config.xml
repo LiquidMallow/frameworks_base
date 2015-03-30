@@ -41,4 +41,8 @@
    <integer name="quick_settings_onthego_dialog_short_timeout">3000</integer>
    <integer name="quick_settings_onthego_dialog_long_timeout">6000</integer>
 
+   <!-- Control whether status bar should distinguish HSPAP data icon form HSPA
+        data icon on devices -->
+   <bool name="config_hspap_data_distinguishable">true</bool>
+
 </resources>

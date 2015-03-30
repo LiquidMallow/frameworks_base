@@ -94,4 +94,7 @@
     <!-- Gesture message -->
     <string name="gestures_message">Draw your gesture here</string>
 
+    <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+
 </resources>
