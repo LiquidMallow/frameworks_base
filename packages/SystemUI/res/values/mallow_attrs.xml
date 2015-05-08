@@ -21,4 +21,3 @@
         <attr name="viewLocation" format="integer" />
     </declare-styleable>
 </resources>
-
