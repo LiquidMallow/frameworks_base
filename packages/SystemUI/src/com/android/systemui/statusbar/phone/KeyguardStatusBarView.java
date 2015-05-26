@@ -40,6 +40,7 @@ import com.android.systemui.BatteryLevelTextView;
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.BatteryLevelTextView;
 import com.android.systemui.R;
+import com.android.systemui.qs.QSPanel;
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.statusbar.policy.KeyguardUserSwitcher;
 import com.android.systemui.statusbar.policy.UserInfoController;
@@ -188,6 +189,10 @@ public class KeyguardStatusBarView extends RelativeLayout {
     public void setUserInfoController(UserInfoController userInfoController) {
         mUserInfoController = userInfoController;
         userInfoController.addListener(mUserInfoChangedListener);
+    }
+
+    public void setQSPanel(QSPanel qsp) {
+        mMultiUserSwitch.setQsPanel(qsp);
     }
 
     public void setKeyguardUserSwitcher(KeyguardUserSwitcher keyguardUserSwitcher) {
