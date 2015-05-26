@@ -1113,6 +1113,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mHeader = (StatusBarHeaderView) mStatusBarWindowContent.findViewById(R.id.header);
         mHeader.setActivityStarter(this);
         mKeyguardStatusBar = (KeyguardStatusBarView) mStatusBarWindowContent.findViewById(R.id.keyguard_header);
+        mKeyguardStatusBar.setActivityStarter(this);
         mKeyguardStatusView = mStatusBarWindowContent.findViewById(R.id.keyguard_status_view);
         mKeyguardBottomArea =
                 (KeyguardBottomAreaView) mStatusBarWindowContent.findViewById(R.id.keyguard_bottom_area);

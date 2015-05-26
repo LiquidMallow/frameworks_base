@@ -323,9 +323,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
     public void setActivityStarter(ActivityStarter activityStarter) {
         mActivityStarter = activityStarter;
-        if (mMultiUserSwitch != null) {
-            mMultiUserSwitch.setActivityStarter(activityStarter);
-        }
+        mMultiUserSwitch.setActivityStarter(activityStarter);
     }
 
     public void setBatteryController(BatteryController batteryController) {
