@@ -4720,6 +4720,12 @@ public final class Settings {
          */
         public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
+	/**
+	 * Enable double tap gesture anywhere on the lock screen put device to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_LOCK_SCREEN = "double_tap_sleep_lock_screen";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
