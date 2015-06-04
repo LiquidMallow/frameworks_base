@@ -4313,7 +4313,7 @@ public final class Settings {
          * Whether to show the IME arrows in the status bar
          * @hide
          */
-        public static final String NAVIGATION_BAR_IME_ARROWS = "navigation_bar_ime_arrows";
+        public static final String STATUS_BAR_IME_ARROWS = "status_bar_ime_arrows";
 
 		/**
 		 * Status bar carrier label
