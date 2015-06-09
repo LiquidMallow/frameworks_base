@@ -80,4 +80,7 @@
     <string name="animation_grow_shrink_right">Grow in (Right)</string>
     <string name="action_null">Blank</string>
 
+    <!-- Zen mode buttons -->
+    <string name="silent_mode_priority">Priority</string>
+    <string name="silent_mode_none">None</string>
 </resources>
