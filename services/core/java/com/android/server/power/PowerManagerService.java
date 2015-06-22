@@ -364,7 +364,7 @@ public final class PowerManagerService extends SystemService
     private int mMaximumScreenOffTimeoutFromDeviceAdmin = Integer.MAX_VALUE;
 
     // The stay on while plugged in setting.
-    // A bitfield of battery conditions under which to make the screen stay on.
+    // 0: Not enabled; 1: debugging over usb; >2: charging.
     private int mStayOnWhilePluggedInSetting;
 
     // True if the device should wake up when plugged or unplugged
@@ -1430,7 +1430,16 @@ public final class PowerManagerService extends SystemService
             final boolean wasStayOn = mStayOn;
             if (mStayOnWhilePluggedInSetting != 0
                     && !isMaximumScreenOffTimeoutFromDeviceAdminEnforcedLocked()) {
-                mStayOn = mBatteryManagerInternal.isPowered(mStayOnWhilePluggedInSetting);
+                switch (mStayOnWhilePluggedInSetting) {
+                    case 1: // Debugging only over usb
+                        mStayOn = ((mPlugType & BatteryManager.BATTERY_PLUGGED_USB) != 0)
+                                && Settings.Global.getInt(mContext.getContentResolver(),
+                                        Settings.Global.ADB_ENABLED, 0) != 0;;
+                        break;
+                    default: // charging
+                        mStayOn = mIsPowered;
+                        break;
+                }
             } else {
                 mStayOn = false;
             }
