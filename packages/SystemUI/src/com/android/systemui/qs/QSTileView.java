@@ -132,11 +132,6 @@ public class QSTileView extends ViewGroup {
     void recreateLabel() {
         CharSequence labelText = null;
         CharSequence labelDescription = null;
-        if (mLabel != null) {
-            labelText = mLabel.getText();
-            removeView(mLabel);
-            mLabel = null;
-        }
         if (mDualLabel != null) {
             labelText = mDualLabel.getText();
             if (mLabel != null) {
@@ -144,6 +139,11 @@ public class QSTileView extends ViewGroup {
             }
             removeView(mDualLabel);
             mDualLabel = null;
+        }
+        if (mLabel != null) {
+            labelText = mLabel.getText();
+            removeView(mLabel);
+            mLabel = null;
         }
         final Resources res = mContext.getResources();
         if (mDual) {
