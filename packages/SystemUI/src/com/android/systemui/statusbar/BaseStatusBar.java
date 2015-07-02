@@ -1157,6 +1157,13 @@ public abstract class BaseStatusBar extends SystemUI implements
                 }
             });
 
+            floatButton.setVisibility(View.VISIBLE);
+            floatButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    launchFloating(contentIntent);
+                }
+            });
+
             if (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.FLOATING_WINDOW_MODE, 0) == 1) {
                 floatButton.setVisibility(View.VISIBLE);
@@ -1198,6 +1205,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
         if (appUid < 0) {
             settingsButton.setVisibility(View.GONE);
+            floatButton.setVisibility(View.GONE);
             appSettingsButton.setVisibility(View.GONE);
         }
 
