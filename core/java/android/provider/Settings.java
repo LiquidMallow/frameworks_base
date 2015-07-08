@@ -4093,42 +4093,7 @@ public final class Settings {
          *
          * @hide
          */
-<<<<<<< HEAD
         public static final String ON_THE_GO_SERVICE_RESTART = "on_the_go_service_restart";
-
-<<<<<<< HEAD
-		/**
-		 * Whether to display app circle sidebar
-=======
-	/**
-	 * Whether or not volume button music controls should be enabled to seek media tracks
-=======
-        public static final String SHOW_ALARM_FULLSCREEN = "show_alarm_fullscreen";
-		
-		/**
-		 * Boolean value whether to link ringtone and notification volume
-         * @hide
-         */
-        public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
-		
-		/**
-		 * Boolean value whether volume down in silent can enter zen mode
-         * @hide
-         */
-        public static final String VOLUME_DOWN_ZEN = "volume_down_zen";
-		
-		/**
-         * Boolean value whether volume up in zen mode can exit zen mode
->>>>>>> 9975275... Immersive Recents [1/2]
-         * @hide
-         */
-        public static final String VOLBTN_MUSIC_CONTROLS = "volbtn_music_controls"
-
-        /**
-         * Change the screenshot delay
-         * @hide
-         */
-        public static final String SCREENSHOT_DELAY = "screenshot_delay";
 
         /**
          * @hide
@@ -4137,7 +4102,6 @@ public final class Settings {
 		
 	/**
 	 * Whether to display app circle sidebar
->>>>>>> b018f91... Immersive Recents [1/2]
          * @hide
          */
         public static final String ENABLE_APP_CIRCLE_BAR = "enable_app_circle_bar";
@@ -4563,6 +4527,38 @@ public final class Settings {
          * @hide
          */
         public static final String IMMERSIVE_RECENTS = "immersive_recents";
+
+		/**
+         * Whether to display the trigger region or not
+         *
+         * Whether to dim the navigation bar icons after inactivity
+         * @hide
+         */
+        public static final String DIM_NAV_BUTTONS = "dim_nav_buttons";
+
+        /**
+         * Time in milliseconds to wait before dimming the nav buttons
+         * @hide
+         */
+        public static final String DIM_NAV_BUTTONS_TIMEOUT = "dim_nav_buttons_timeout";
+
+        /**
+         * Alpha value percentage to dim the nav buttons to
+         * @hide
+         */
+        public static final String DIM_NAV_BUTTONS_ALPHA = "dim_nav_buttons_alpha";
+
+        /**
+         * Whether to animate the nav button dimming
+         * @hide
+         */
+        public static final String DIM_NAV_BUTTONS_ANIMATE = "dim_nav_buttons_animate";
+
+        /**
+         * Duration of the fade animation in milliseconds
+         * @hide
+         */
+        public static final String DIM_NAV_BUTTONS_ANIMATE_DURATION = "dim_nav_buttons_animate_duration";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
