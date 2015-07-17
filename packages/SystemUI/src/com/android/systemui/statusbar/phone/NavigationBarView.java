@@ -354,6 +354,9 @@ public class NavigationBarView extends LinearLayout {
         if (mDoubleTapToSleep) {
             mDoubleTapGesture.onTouchEvent(event);
         }
+        if (mDimNavButtonsTouchAnywhere) {
+            onNavButtonTouched();
+        }
         if (mTaskSwitchHelper.onTouchEvent(event)) {
             return true;
         }
