@@ -57,4 +57,9 @@
     <!-- app sidebar item text shadow color -->
     <color name="sidebar_item_text_shadow_color">#ff000000</color>
 
+    <!-- Play Queue -->
+    <color name="notification_guts_media_bg_color">#ff606060</color>
+    <color name="queue_background">#ff303030</color>
+    <color name="queue_background_pressed">#ff606060</color>
+
 </resources>

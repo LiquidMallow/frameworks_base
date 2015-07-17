@@ -328,4 +328,7 @@
     <!-- vpn icon switch -->
     <string name="status_bar_vpn">VPN</string>
 
+    <!-- Play queue -->
+    <string name="play_queue_extention">Show play queue</string>
+
 </resources>
