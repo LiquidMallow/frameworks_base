@@ -193,8 +193,6 @@ public class NavigationBarView extends LinearLayout {
     private boolean mLayoutTransitionsEnabled = true;
     private boolean mWakeAndUnlocking;
 
-    private GestureDetector mDoubleTapGesture;
-
     private class NavTransitionListener implements TransitionListener {
         private boolean mBackTransitioning;
         private boolean mHomeAppearing;
@@ -1188,7 +1186,7 @@ public class NavigationBarView extends LinearLayout {
         }
 
         mNavBarButtonColorMode = Settings.System.getIntForUser(resolver,
-                Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0, UserHandle.USER_CURRENT);
+                Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 3, UserHandle.USER_CURRENT);
 
         mButtonsConfig = ActionHelper.getNavBarConfig(mContext);
 
@@ -1252,7 +1250,7 @@ public class NavigationBarView extends LinearLayout {
         if (color && mNavBarButtonColorMode != 3) {
             iconBack.setTint(mNavBarButtonColor);
             iconBackLand.setTint(mNavBarButtonColor);
-		}
+        }
         mBackIcon = iconBack;
         mBackLandIcon = iconBackLand;
     }
@@ -1351,7 +1349,7 @@ public class NavigationBarView extends LinearLayout {
                     Settings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOUBLE_TAP_SLEEP_NAVBAR), false, this);
-			resolver.registerContentObserver(Settings.System.getUriFor(
+	    resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_IME_ARROWS), false, this);		
 
             // intialize mModlockDisabled
@@ -1395,8 +1393,8 @@ public class NavigationBarView extends LinearLayout {
             mDoubleTapToSleep = (Settings.System.getIntForUser(resolver,
                     Settings.System.DOUBLE_TAP_SLEEP_NAVBAR, 0,
                     UserHandle.USER_CURRENT) == 1);
-			mImeArrowVisibility = (Settings.System.getIntForUser(mContext.getContentResolver(),
-            		Settings.System.STATUS_BAR_IME_ARROWS, HIDE_IME_ARROW,
+	    mImeArrowVisibility = (Settings.System.getIntForUser(mContext.getContentResolver(),
+            	    Settings.System.STATUS_BAR_IME_ARROWS, HIDE_IME_ARROW,
                     UserHandle.USER_CURRENT) == SHOW_IME_ARROW);
             setNavigationIconHints(mNavigationIconHints, true);		
         }
