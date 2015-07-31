@@ -162,6 +162,9 @@
     <string name="accessibility_quick_settings_sync_off">Sync off.</string>
     <!-- Content description of the sync tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_sync_on">Sync on.</string>
+    
+    <!-- Content description of the KernelAdiutor tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_kernel_adiutor">Kernel.</string>
 
     <!-- Announcement made when sync changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_sync_changed_off">Sync turned off.</string>
