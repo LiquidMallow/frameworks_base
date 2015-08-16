@@ -3439,7 +3439,7 @@ public final class Settings {
          * This is an integer value in a range between -7 and +7, so there are 15 possible values.
          *   -7 = slowest
          *    0 = default speed
-         *   +7 = fastest
+         *   +7 = fastest   
          * @hide
          */
         public static final String POINTER_SPEED = "pointer_speed";
@@ -4204,6 +4204,14 @@ public final class Settings {
          * @hide
          */
         public static final String VOLBTN_MUSIC_CONTROLS = "volbtn_music_controls";
+
+        /**
+         * Position of date
+         * 0 - Left of clock
+         * 1 - Right of clock
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
