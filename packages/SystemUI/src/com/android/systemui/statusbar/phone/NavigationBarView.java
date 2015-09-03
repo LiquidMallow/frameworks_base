@@ -398,7 +398,7 @@ public class NavigationBarView extends LinearLayout {
         mBackAltIcon = res.getDrawable(R.drawable.ic_sysbar_back_ime);
         mBackAltLandIcon = mBackAltIcon;
         mRecentIcon = res.getDrawable(R.drawable.ic_sysbar_recent);
-		mRecentLandIcon = mRecentIcon;
+	mRecentLandIcon = mRecentIcon;
     }
 
     public void updateResources(Resources res) {
