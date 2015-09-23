@@ -2336,6 +2336,9 @@
     <!-- Whether to start in touch mode -->
     <bool name="config_defaultInTouchMode">true</bool>
 
+    <!-- Configure discarding WiFi scanning when P2P connected.-->
+    <bool name="config_discard_scan_when_p2p_connected">false</bool>
+
     <!-- Time adjustment, in milliseconds, applied to the default double tap threshold
          used for gesture detection by the screen magnifier. -->
     <integer name="config_screen_magnification_multi_tap_adjustment">-50</integer>
