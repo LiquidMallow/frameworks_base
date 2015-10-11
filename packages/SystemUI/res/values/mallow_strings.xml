@@ -46,6 +46,9 @@
     <string name="app_float_item_title">Float view</string>
     <string name="app_stop_item_title">Kill app</string>
 
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App Killed</string>
+
     <!-- Screenshot -->
     <string name="shortcut_screenshot">Screenshot</string>
 
