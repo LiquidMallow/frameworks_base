@@ -20,4 +20,6 @@
 
     <color name="item_doc_grid_background">@color/material_grey_300</color>
     <color name="item_doc_grid_protect_background">#88000000</color>
+    <color name="drawer_roots_background">@*android:color/white</color>
+    <color name="background_fragment_dir">@color/material_grey_50</color>
 </resources>
