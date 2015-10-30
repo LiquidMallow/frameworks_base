@@ -24,4 +24,9 @@ public class TypefaceTestSuite {
         suite.addTestSuite(FontListConverterTest.class);
         return suite;
     }
+
+    public static boolean isChineseLanguage() {
+       return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(
+               Locale.CHINESE.getLanguage());
+    }
 }
