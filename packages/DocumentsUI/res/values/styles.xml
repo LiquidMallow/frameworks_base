@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="DialogWhenReallyLarge" parent="@android:style/Theme.DeviceDefault.Light.DarkActionBar" />
+    <style name="DialogWhenReallyLarge" parent="@android:style/Theme.Material.DayNight.DarkActionBar" />
 
     <style name="DocumentsTheme" parent="@style/DialogWhenReallyLarge">
         <item name="android:actionBarWidgetTheme">@null</item>
@@ -26,6 +26,7 @@
         <item name="android:colorPrimaryDark">@*android:color/material_blue_grey_900</item>
         <item name="android:colorPrimary">@*android:color/material_blue_grey_800</item>
         <item name="android:colorAccent">@*android:color/material_deep_teal_500</item>
+        <item name="android:navigationBarColor">@*android:color/material_blue_grey_900</item>
 
         <item name="android:listDivider">@*android:drawable/list_divider_material</item>
 
