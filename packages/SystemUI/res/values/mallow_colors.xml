@@ -20,9 +20,9 @@
 
     <dimen name="detail_radio_group_padding_left">16dp</dimen>
     <dimen name="detail_radio_group_padding">8dp</dimen>
-    <!-- Floating action button -->
-    <color name="fab_color">#ff009688</color>
-    <color name="floating_action_button_icon_color">#ffffff</color>
+
+    <!-- Status bar temperature color -->
+    <color name="fab_icon_color">@android:color/white</color>
 
     <!-- Gesture Anywhere specific colors -->
     <color name="gesture_overlay_background_fill_color">#80000000</color>
