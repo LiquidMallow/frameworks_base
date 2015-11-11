@@ -45,4 +45,7 @@
     <!-- The min animation duration for animating the task bar out. -->
     <integer name="recents_animate_task_bar_exit_duration">125</integer>
 
+    <!-- Show voice assist affordance on Keyguard -->
+    <bool name="config_keyguardShowVoiceAssistAffordance">false</bool>
+
 </resources>
