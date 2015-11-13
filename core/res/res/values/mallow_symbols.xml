@@ -47,9 +47,6 @@
   <java-symbol type="dimen" name="edge_gesture_perpendicular_distance" />
   <java-symbol type="dimen" name="edge_gesture_trigger_thickness" />
 
-  <!-- Power menu -->
-  <java-symbol type="string" name="system_error_vendorprint" />
-
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
 
@@ -196,5 +193,8 @@
 
   <!-- Screen Recording -->
   <java-symbol type="bool" name="config_enableScreenrecordChord" />
+
+  <!-- Power menu -->
+  <java-symbol type="string" name="system_error_vendorprint" />
 
 </resources>
