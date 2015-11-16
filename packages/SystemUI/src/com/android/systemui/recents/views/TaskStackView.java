@@ -606,7 +606,7 @@ public class TaskStackView extends FrameLayout implements TaskStack.TaskStackCal
 
         Task t = mStack.getTasks().get(mFocusedTaskIndex);
         TaskView tv = getChildViewForTask(t);
-        tv.dismissTask();
+        tv.dismissTask(0L);
     }
 
     /** Resets the focused task. */
@@ -640,12 +640,15 @@ public class TaskStackView extends FrameLayout implements TaskStack.TaskStackCal
                 }
 
                 // Remove visible TaskViews
+                long dismissDelay = 0;
                 int childCount = getChildCount();
+                int delay = mConfig.taskViewRemoveAnimDuration / childCount;
                 if (!dismissAll() && childCount > 1) childCount--;
                 for (int i = 0; i < childCount; i++) {
                     TaskView tv = (TaskView) getChildAt(i);
                     tasks.remove(tv.getTask());
-                    tv.dismissTask();
+                    tv.dismissTask(dismissDelay);
+                    dismissDelay += delay;
                 }
 
                 int size = tasks.size();
@@ -1025,26 +1028,6 @@ public class TaskStackView extends FrameLayout implements TaskStack.TaskStackCal
         }
     }
 
-    /** Requests this task stack to start it's dismiss-all animation. */
-    public void startDismissAllAnimation(final Runnable postAnimationRunnable) {
-        // Clear the focused task
-        resetFocusedTask();
-        // Animate the dismiss-all button
-        hideDismissAllButton(new Runnable() {
-            @Override
-            public void run() {
-                List<TaskView> taskViews = getTaskViews();
-                int taskViewCount = taskViews.size();
-                int count = 0;
-                for (int i = taskViewCount - 1; i >= 0; i--) {
-                    TaskView tv = taskViews.get(i);
-                    tv.startDeleteTaskAnimation(i > 0 ? null : postAnimationRunnable, count * 50);
-                    count++;
-                }
-            }
-        });
-    }
-
     /** Animates a task view in this stack as it launches. */
     public void startLaunchTaskAnimation(TaskView tv, Runnable r, boolean lockToTask) {
         Task launchTargetTask = tv.getTask();
@@ -1230,14 +1213,6 @@ public class TaskStackView extends FrameLayout implements TaskStack.TaskStackCal
         // Announce for accessibility
         String msg = getContext().getString(R.string.accessibility_recents_all_items_dismissed);
         announceForAccessibility(msg);
-
-        startDismissAllAnimation(new Runnable() {
-            @Override
-            public void run() {
-                // Notify that all tasks have been removed
-                mCb.onAllTaskViewsDismissed(removedTasks);
-            }
-        });
     }
 
     @Override
@@ -1514,7 +1489,7 @@ public class TaskStackView extends FrameLayout implements TaskStack.TaskStackCal
                         public void run() {
                             mStack.removeTask(t);
                         }
-                    }, 0);
+                    }, 0L);
                 } else {
                     // Otherwise, remove the task from the stack immediately
                     mStack.removeTask(t);
