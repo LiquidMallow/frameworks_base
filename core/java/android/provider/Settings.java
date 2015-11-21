@@ -7032,6 +7032,18 @@ public final class Settings {
                 "camera_double_tap_power_gesture_disabled";
 
         /**
+         * Beginning of Screw'd Secure Settings Additions
+         * @hide
+         */
+
+
+        /**
+         * The TCP/IP port to run ADB on, or -1 for USB
+         * @hide
+         */
+        public static final String ADB_PORT = "adb_port";
+
+        /**
          * Default theme to use.  If empty, use system.
          * @hide
          */
