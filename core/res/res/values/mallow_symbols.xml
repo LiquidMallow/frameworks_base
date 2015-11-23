@@ -249,4 +249,7 @@
   <java-symbol type="id" name="dexopt_message_detail" />
   <java-symbol type="id" name="dexopt_progress" />
 
+  <!-- correct sensor handling -->
+  <java-symbol type="bool" name="config_useSystemClockforSensors" />
+
 </resources>
