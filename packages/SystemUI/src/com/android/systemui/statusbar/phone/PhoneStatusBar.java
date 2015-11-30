@@ -558,7 +558,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 prepareNavigationBarView();
 			} else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CUSTOM_HEADER_DEFAULT))) {
-                    updateEmptyShadeView();		
+					mStatusBarHeaderMachine.updateEnablement();
+	         		mStatusBarHeaderMachine.doUpdateStatusHeaderObservers(true);
             }
             update();
         }
@@ -590,6 +591,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mSidebarPosition = sidebarPosition;
                 mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
             }
+
+            mStatusBarHeaderMachine.updateEnablement();
         }
     }
 
