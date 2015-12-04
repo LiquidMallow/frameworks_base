@@ -189,4 +189,7 @@
   <!-- LED pulse -->
   <java-symbol type="bool" name="config_ledCanPulse" />
 
+  <!-- Screen Recording -->
+  <java-symbol type="bool" name="config_enableScreenrecordChord" />
+
 </resources>
