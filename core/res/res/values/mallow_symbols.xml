@@ -106,4 +106,7 @@
   <java-symbol type="drawable" name="ic_shortcut_action_auto_rotate" />
   <java-symbol type="drawable" name="ic_shortcut_action_volume_panel" />
 
+  <!-- Screen Recording -->
+  <java-symbol type="bool" name="config_enableScreenrecordChord" />
+
 </resources>
