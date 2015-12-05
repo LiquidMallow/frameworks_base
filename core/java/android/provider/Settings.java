@@ -3432,6 +3432,12 @@ public final class Settings {
          * @hide
          */
         public static final String VOLUME_DOWN_ZEN = "volume_down_zen";
+		
+		/**
+         * Boolean value whether volume up in zen mode can exit zen mode
+         * @hide
+         */
+        public static final String VOLUME_UP_LEAVE_ZEN = "volume_up_leave_zen";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
