@@ -235,7 +235,7 @@ public class AccessPoint implements Comparable<AccessPoint> {
 
     public boolean matches(WifiConfiguration config) {
         if (config.isPasspoint() && mConfig != null && mConfig.isPasspoint())
-            return config.FQDN.equals(mConfig.providerFriendlyName);
+            return ssid.equals(removeDoubleQuotes(config.SSID)) && config.FQDN.equals(mConfig.providerFriendlyName);
         else
             return ssid.equals(removeDoubleQuotes(config.SSID)) && security == getSecurity(config);
     }
