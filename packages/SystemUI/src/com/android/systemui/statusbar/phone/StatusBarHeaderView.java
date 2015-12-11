@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
+import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
@@ -76,14 +77,10 @@ import java.text.NumberFormat;
  * The view to manage the header area in the expanded status bar.
  */
 public class StatusBarHeaderView extends RelativeLayout implements View.OnClickListener,
-<<<<<<< HEAD
-        NextAlarmController.NextAlarmChangeCallback, EmergencyListener {
+        NextAlarmController.NextAlarmChangeCallback, EmergencyListener,
+		StatusBarHeaderMachine.IStatusBarHeaderMachineObserver {
 
     static final String TAG = "StatusBarHeaderView";
-=======
-        NextAlarmController.NextAlarmChangeCallback, EmergencyListener, WeatherController.Callback,
-		StatusBarHeaderMachine.IStatusBarHeaderMachineObserver {
->>>>>>> b9fc8ba... [1/2] SystemUI: Add time-context headers to the notification header
 
     private boolean mExpanded;
     private boolean mListening;
@@ -973,13 +970,12 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         }
     }
 
-<<<<<<< HEAD
     private void setQSHeaderAlpha() {
         if (mHeaderView != null) {
             mHeaderView.getBackground().setAlpha(mQSHeaderAlpha);
         }
     }
-=======
+
     private void doUpdateStatusBarCustomHeader(final Drawable next, final boolean force) {
         if (next != null) {
             if (next != mCurrentBackground) {
@@ -1026,7 +1022,10 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     public void updateHeader(final Drawable headerImage, final boolean force) {
         post(new Runnable() {
              public void run() {
-                 doUpdateStatusBarCustomHeader(headerImage, force);
+                // TODO we dont need to do this every time but we dont have
+                // an other place to know right now when custom header is enabled
+                enableTextShadow();
+                doUpdateStatusBarCustomHeader(headerImage, force);
             }
         });
     }
@@ -1037,8 +1036,32 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
              public void run() {
                 mCurrentBackground = null;
                 mBackgroundImage.setVisibility(View.GONE);
+                disableTextShadow();
             }
         });
     }
->>>>>>> b9fc8ba... [1/2] SystemUI: Add time-context headers to the notification header
+
+    /**
+     * makes text more readable on light backgrounds
+     */
+    private void enableTextShadow() {
+        mTime.setShadowLayer(5, 0, 0, Color.BLACK);
+        mAmPm.setShadowLayer(5, 0, 0, Color.BLACK);
+        mDateCollapsed.setShadowLayer(5, 0, 0, Color.BLACK);
+        mDateExpanded.setShadowLayer(5, 0, 0, Color.BLACK);
+        mBatteryLevel.setShadowLayer(5, 0, 0, Color.BLACK);
+        mAlarmStatus.setShadowLayer(5, 0, 0, Color.BLACK);
+    }
+
+    /**
+     * default
+     */
+    private void disableTextShadow() {
+        mTime.setShadowLayer(0, 0, 0, Color.BLACK);
+        mAmPm.setShadowLayer(0, 0, 0, Color.BLACK);
+        mDateCollapsed.setShadowLayer(0, 0, 0, Color.BLACK);
+        mDateExpanded.setShadowLayer(0, 0, 0, Color.BLACK);
+        mBatteryLevel.setShadowLayer(0, 0, 0, Color.BLACK);
+        mAlarmStatus.setShadowLayer(0, 0, 0, Color.BLACK);
+    }
 }
