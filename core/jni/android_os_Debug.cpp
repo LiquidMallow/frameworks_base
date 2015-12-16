@@ -992,7 +992,7 @@ static void android_os_Debug_dumpNativeBacktraceToFile(JNIEnv* env, jobject claz
  * JNI registration.
  */
 
-static JNINativeMethod gMethods[] = {
+static const JNINativeMethod gMethods[] = {
     { "getNativeHeapSize",      "()J",
             (void*) android_os_Debug_getNativeHeapSize },
     { "getNativeHeapAllocatedSize", "()J",

@@ -2216,7 +2216,7 @@ static jint android_content_AssetManager_getBasePackageId(JNIEnv* env, jobject c
 /*
  * JNI registration.
  */
-static JNINativeMethod gAssetManagerMethods[] = {
+static const JNINativeMethod gAssetManagerMethods[] = {
     /* name, signature, funcPtr */
 
     // Basic asset stuff.
