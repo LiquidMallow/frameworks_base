@@ -56,6 +56,11 @@ import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.PieTile;
 import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
+import com.android.systemui.qs.tiles.ScreenOffTile;
+import com.android.systemui.qs.tiles.ScreenrecordTile;
+import com.android.systemui.qs.tiles.ScreenshotTile;
+import com.android.systemui.qs.tiles.SoundTile;
+import com.android.systemui.qs.tiles.VolumeTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.ThemesTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
@@ -312,6 +317,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
 	    else if (tileSpec.equals("kernel")) return new KernelAdiutorTile(this);
         else if (tileSpec.equals("caffeine")) return new CaffeineTile(this);
 	    else if (tileSpec.equals("kill_app")) return new KillAppTile(this);
+	    else if (tileSpec.equals("screenrecord")) return new ScreenrecordTile(this);
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
     }
