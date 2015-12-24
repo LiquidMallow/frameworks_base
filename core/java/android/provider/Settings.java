@@ -3547,6 +3547,12 @@ public final class Settings {
         public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
 
         /**
+         * Show four g instead of lte
+         * @hide
+         */
+        public static final String SHOW_FOURG = "show_fourg";
+
+        /**
          * Override and forcefully disable the fullscreen keyboard
          * @hide
          */

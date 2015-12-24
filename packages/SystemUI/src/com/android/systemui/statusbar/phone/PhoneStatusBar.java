@@ -350,6 +350,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // settings
     private QSPanel mQSPanel;
     private QSTileHost mQSTileHost;
+    private boolean mShow4G;
 
     // top bar
     StatusBarHeaderView mHeader;
@@ -567,6 +568,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.STATUS_BAR_CUSTOM_HEADER_SHADOW))) {
                     mStatusBarHeaderMachine.updateEnablement();
                     mStatusBarHeaderMachine.doUpdateStatusHeaderObservers(true);
+			} else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SHOW_FOURG))) {
+                    mShow4G = Settings.System.getIntForUser(
+                            mContext.getContentResolver(),
+                            Settings.System.SHOW_FOURG,
+                            0, UserHandle.USER_CURRENT) == 1;
+                            recreateStatusBar();
+                            updateRowStates();
+                            updateSpeedbump();
+                            updateClearAll();
+                            updateEmptyShadeView();
             }
             update();
         }
@@ -586,6 +598,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
                 mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
             }
+
+			boolean mShow4G = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
 
             mMaxKeyguardNotifConfig = Settings.System.getIntForUser(resolver,
                     Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, 5, mCurrentUserId);

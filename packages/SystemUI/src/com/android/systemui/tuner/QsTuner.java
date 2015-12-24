@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
