@@ -44,7 +44,10 @@ import com.android.systemui.statusbar.phone.StatusBarIconController;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TimeZone;
 
 import libcore.icu.LocaleData;
@@ -131,6 +134,9 @@ public class Clock extends TextView implements DemoMode {
             updateSettings();
         }
     }
+
+    private final Handler handler = new Handler();
+    TimerTask second;
 
     public Clock(Context context) {
         this(context, null);
@@ -282,6 +288,11 @@ public class Clock extends TextView implements DemoMode {
         int clockDatePosition = Settings.System.getInt(getContext().getContentResolver(),
             Settings.System.STATUSBAR_CLOCK_DATE_POSITION, 0);
 
+        if (Settings.System.getInt(mContext.getContentResolver(), Settings.System.CLOCK_USE_SECOND, 0) == 1) {
+            String temp = result;
+            result = String.format("%s:%02d", temp, new GregorianCalendar().get(Calendar.SECOND));
+        }
+
         if (mClockDateDisplay != CLOCK_DATE_DISPLAY_GONE) {
             Date now = new Date();
 
@@ -381,6 +392,24 @@ public class Clock extends TextView implements DemoMode {
             // flag to reset the color
             clockColor = defaultColor;
         }
+
+        second = new TimerTask()
+        {
+            @Override
+            public void run()
+             {
+                Runnable updater = new Runnable()
+                  {
+                   public void run()
+                   {
+                       updateClock();
+                   }
+                  };
+                handler.post(updater);
+             }
+        };
+        Timer timer = new Timer();
+        timer.schedule(second, 0, 1001);
 
         if (mAttached) {
             setTextColor(clockColor);
