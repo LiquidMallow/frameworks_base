@@ -224,6 +224,26 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         } else {
             WindowManager.LayoutParams attrs = mDialog.getWindow().getAttributes();
             attrs.setTitle("GlobalActions");
+
+        boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+        int powermenuAnimations = isPrimary ? getPowermenuAnimations() : 0;
+
+        if (powermenuAnimations == 0) {
+         // default AOSP action
+        }
+        if (powermenuAnimations == 1) {
+            attrs.windowAnimations = R.style.PowerMenuBottomAnimation;
+            attrs.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+        }
+        if (powermenuAnimations == 2) {
+            attrs.windowAnimations = R.style.PowerMenuTopAnimation;
+            attrs.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
+        }
+        if (powermenuAnimations == 3) {
+                attrs.windowAnimations = R.style.PowerMenuRotateAnimation;
+                attrs.gravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
+        }
+
             mDialog.getWindow().setAttributes(attrs);
             mDialog.show();
             mDialog.getWindow().getDecorView().setSystemUiVisibility(View.STATUS_BAR_DISABLE_EXPAND);
