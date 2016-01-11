@@ -132,13 +132,7 @@
                 android:paddingStart="7dp"
                 android:gravity="center_vertical|start"
                 />
-	     	
         </com.android.keyguard.AlphaOptimizedLinearLayout>
-	
-	<com.android.systemui.statusbar.policy.BatteryBarController
-        	android:layout_width="match_parent"
-        	android:layout_height="1dp"
-        	systemui:viewLocation="1" />
     </LinearLayout>
 
     <com.android.keyguard.AlphaOptimizedLinearLayout
@@ -159,5 +153,9 @@
             android:singleLine="true"
             />
     </com.android.keyguard.AlphaOptimizedLinearLayout>
-
+    
+    <com.android.systemui.statusbar.policy.BatteryBarController
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        systemui:viewLocation="1" />
 </com.android.systemui.statusbar.phone.PhoneStatusBarView>
