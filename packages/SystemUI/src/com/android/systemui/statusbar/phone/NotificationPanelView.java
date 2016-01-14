@@ -226,7 +226,6 @@ public class NotificationPanelView extends PanelView implements
     private final Interpolator mTouchResponseInterpolator =
             new PathInterpolator(0.3f, 0f, 0.1f, 1f);
 
-
     // QS alpha
     private int mQSShadeAlpha;
 
@@ -251,7 +250,6 @@ public class NotificationPanelView extends PanelView implements
         mQsPanel = (QSPanel) findViewById(R.id.quick_settings_panel);
         mClockView = (TextView) findViewById(R.id.clock_view);
         mScrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
-        mScrollView.setListener(this);
         mScrollView.setFocusable(false);
         mReserveNotificationSpace = findViewById(R.id.reserve_notification_space);
         mNotificationContainerParent = (NotificationsQuickSettingsContainer)
@@ -285,7 +283,11 @@ public class NotificationPanelView extends PanelView implements
                 }
             }
         });
-        setQSBackgroundAlpha();
+		
+	setQSBackgroundAlpha();
+
+        mScrollView.setListener(this);
+    }
 
     @Override
     protected void loadDimens() {
@@ -2467,8 +2469,7 @@ public class NotificationPanelView extends PanelView implements
         ActivityManager am = getContext().getSystemService(ActivityManager.class);
         List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
         return !tasks.isEmpty() && pkgName.equals(tasks.get(0).topActivity.getPackageName());
-<<<<<<< HEAD
-=======
+    }
 
     private class SettingsObserver extends UserContentObserver {
         SettingsObserver(Handler handler) {
@@ -2479,14 +2480,12 @@ public class NotificationPanelView extends PanelView implements
         protected void observe() {
             super.observe();
             ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_QUICK_PULLDOWN), false, this, UserHandle.USER_ALL);
 			resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD),
                     false, this, UserHandle.USER_ALL);	
 			resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_TRANSPARENT_SHADE),
-                    false, this, UserHandle.USER_ALL);		
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -2499,9 +2498,7 @@ public class NotificationPanelView extends PanelView implements
         @Override
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
-            mOneFingerQuickSettingsIntercept = Settings.System.getIntForUser(resolver,
-                    Settings.System.QS_QUICK_PULLDOWN, 0, UserHandle.USER_CURRENT);
-			mStatusBarLockedOnSecureKeyguard = Settings.Secure.getIntForUser(
+		mStatusBarLockedOnSecureKeyguard = Settings.Secure.getIntForUser(
                     resolver, Settings.Secure.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD, 0,
                     UserHandle.USER_CURRENT) == 1;
 			mQSShadeAlpha = Settings.System.getInt(
@@ -2517,6 +2514,5 @@ public class NotificationPanelView extends PanelView implements
         if (mQsPanel != null) {
             mQsPanel.setQSShadeAlphaValue(mQSShadeAlpha);
         }
->>>>>>> b5182e8... Disable Quick Settings on secure lockscreen (1/2)
     }
 }
