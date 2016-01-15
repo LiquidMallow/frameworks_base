@@ -242,6 +242,10 @@ public abstract class BaseStatusBar extends SystemUI implements
     // to some other configuration change).
     protected ThemeConfig mCurrentTheme;
 
+    // last theme that was applied in order to detect theme change (as opposed
+    // to some other configuration change).
+    protected ThemeConfig mCurrentTheme;
+
     @Override  // NotificationData.Environment
     public boolean isDeviceProvisioned() {
         return mDeviceProvisioned;
