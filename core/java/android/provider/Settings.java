@@ -4634,6 +4634,12 @@ public final class Settings {
         public static final String PROXIMITY_AUTO_SPEAKER_INCALL_ONLY =
                 "proximity_auto_speaker_incall_only";
 
+		/**
+         * Whether to prevent loud volume levels when headset is first plugged in.
+         * @hide
+         */
+        public static final String SAFE_HEADSET_VOLUME = "safe_headset_volume";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
