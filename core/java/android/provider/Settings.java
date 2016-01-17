@@ -4494,6 +4494,12 @@ public final class Settings {
          * @hide
          */
         public static final String DASHBOARD_TILEVIEW_DOUBLE_LINES = "dashboard_tileview_double_lines";
+		
+		/**
+		 * Transparent qs shade
+         * @hide
+         */
+        public static final String QS_TRANSPARENT_SHADE = "qs_transparent_shade";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
