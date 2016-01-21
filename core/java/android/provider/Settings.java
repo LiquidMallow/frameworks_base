@@ -4482,6 +4482,12 @@ public final class Settings {
          * @hide
          */
         public static final String CLOCK_USE_SECOND = "clock_use_second";
+		
+		/**
+         * Change the number of columns displayed in the Settings dashboard
+         * @hide
+         */
+        public static final String DASHBOARD_COLUMNS = "dashboard_columns";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
