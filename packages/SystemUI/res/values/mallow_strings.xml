@@ -101,6 +101,9 @@
     <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_data_connection_HP">HSPA+</string>
 
+    <string name="quick_settings_kernel_adiutor_label">Kernel</string>
+    <string name="quick_settings_caffeine_label">Caffeine</string>
+
     <!-- Notification which notifies user flashlight is enabled -->
     <string name="quick_settings_tile_flashlight_not_title">Flashlight is on</string>
     <string name="quick_settings_tile_flashlight_not_summary">Tap to turn off</string>
@@ -165,6 +168,11 @@
     
     <!-- Content description of the KernelAdiutor tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_kernel_adiutor">Kernel.</string>
+    
+    <!-- Content description of the caffeine tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_caffeine_off">Caffeine off.</string>
+    <!-- Content description of the caffeine tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine on.</string>
 
     <!-- Announcement made when sync changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_sync_changed_off">Sync turned off.</string>
