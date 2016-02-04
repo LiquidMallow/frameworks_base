@@ -397,7 +397,8 @@ public final class ActivityManagerService extends ActivityManagerNative
     static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     // How many bytes to write into the dropbox log before truncating
-    static final int DROPBOX_MAX_SIZE = 256 * 1024;
+    static final int DROPBOX_MAX_SIZE = 256;
+    static final String SYSTEM_DROPBOX_MAX_SIZE = "sys.dropbox.max_size_kb";
 
     static final String PROP_REFRESH_THEME = "sys.refresh_theme";
 
@@ -764,6 +765,10 @@ public final class ActivityManagerService extends ActivityManagerNative
      * Hash keys are the receiver IBinder, hash value is a ReceiverList.
      */
     final HashMap<IBinder, ReceiverList> mRegisteredReceivers = new HashMap<>();
+
+    static int getDropboxMaxSize() {
+        return SystemProperties.getInt(SYSTEM_DROPBOX_MAX_SIZE, DROPBOX_MAX_SIZE) * 1024;
+    }
 
     /**
      * Resolver for broadcast intents to registered receivers.
@@ -12571,7 +12576,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                 }
                 if (logFile != null) {
                     try {
-                        sb.append(FileUtils.readTextFile(logFile, DROPBOX_MAX_SIZE,
+                        sb.append(FileUtils.readTextFile(logFile, getDropboxMaxSize(),
                                     "\n\n[[TRUNCATED]]"));
                     } catch (IOException e) {
                         Slog.e(TAG, "Error reading " + logFile, e);
