@@ -35,6 +35,7 @@ import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -4978,11 +4979,18 @@ public class AudioService extends IAudioService.Stub {
     private void startMusicPlayer() {
         boolean launchPlayer = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.HEADSET_CONNECT_PLAYER, 0, UserHandle.USER_CURRENT) != 0;
-        if (launchPlayer) {
-            Intent playerIntent = new Intent(Intent.ACTION_MAIN);
-            playerIntent.addCategory(Intent.CATEGORY_APP_MUSIC);
-            playerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(playerIntent);
+
+        TelecomManager tm = (TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
+
+        if (launchPlayer && !tm.isInCall()) {
+            try {
+                Intent playerIntent = new Intent(Intent.ACTION_MAIN);
+                playerIntent.addCategory(Intent.CATEGORY_APP_MUSIC);
+                playerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(playerIntent);
+            } catch (ActivityNotFoundException | IllegalArgumentException e) {
+                Log.w(TAG, "No music player Activity could be found");
+            }
         }
     }
 
