@@ -177,6 +177,13 @@
     <!-- Brightness QS Tile -->
     <string name="quick_settings_brightness">Brightness</string>
 
+    <!-- Expanded Desktop QS Tile -->
+    <string name="quick_settings_expanded_desktop">Expanded</string>
+    <string name="quick_settings_expanded_desktop_off">Normal</string>
+
+    <!-- IME selector Tile -->
+    <string name="quick_settings_ime_label">IME</string>
+
     <!-- Music QS Tile -->
     <string name="quick_settings_music_label">Music</string>
     <string name="quick_settings_music_play">Play</string>
@@ -213,5 +220,8 @@
     <string name="quick_settings_themes_system_theme">System theme</string>
     <string name="quick_settings_themes_default_theme">Default</string>
     <string name="quick_settings_themes_match_system">Match system theme</string>
+
+    <!-- IME selector Tile -->
+    <string name="quick_settings_ime_label">IME</string>
 
 </resources>
