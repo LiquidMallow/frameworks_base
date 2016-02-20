@@ -5054,6 +5054,12 @@ public final class Settings {
         public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
 
         /**
+         * Whether to wake up screen when call is disconnected
+         * @hide
+         */
+        public static final String WAKEUP_SCREEN_WHEN_CALL_DISCONNECTED = "wakeup_screen_when_call_disconnected";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
