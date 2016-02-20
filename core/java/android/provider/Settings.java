@@ -4725,6 +4725,12 @@ public final class Settings {
          * @hide
          */
         public static final String DOUBLE_TAP_SLEEP_LOCK_SCREEN = "double_tap_sleep_lock_screen";
+	
+	/**
+	 *  Enable flashlight notification
+         * @hide
+         */
+        public static final String FLASHLIGHT_NOTIFICATION = "flashlight_notification";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
