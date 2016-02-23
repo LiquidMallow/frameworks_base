@@ -5828,6 +5828,12 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_TARGETS = "lockscreen_target_actions";
+		
+		/**		
+		 * Options to decide wether or not to show keyguard bouncer on secure lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_BOUNCER = "lockscreen_bouncer";
 
         /**
          * Comma-separated list of location providers that activities may access. Do not rely on
