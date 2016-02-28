@@ -3508,6 +3508,18 @@ public final class Settings {
          */
         public static final String FORMAL_TEXT_INPUT = "formal_text_input";
 
+        /** @hide */
+        public static final Validator EGG_MODE_VALIDATOR = new Validator() {
+            @Override
+            public boolean validate(String value) {
+                try {
+                    return Long.parseLong(value) >= 0;
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+            }
+        };
+
         /**
          * Volume key controls ringtone or media sound stream
          * @hide
@@ -3774,9 +3786,9 @@ public final class Settings {
 
         /**
          * Style of clock
-         * 0 - Hide Clock
-         * 1 - Right Clock
-         * 2 - Center Clock
+         * 0 - Right Clock
+         * 1 - Center Clock
+         * 2 - Left Clock
          * @hide
          */
         public static final String STATUSBAR_CLOCK_STYLE = "statusbar_clock_style";
@@ -8764,6 +8776,15 @@ public final class Settings {
          * @hide
          */
         public static final String WIFI_BOUNCE_DELAY_OVERRIDE_MS = "wifi_bounce_delay_override_ms";
+
+        /**
+         * Defines global runtime overrides to window policy.
+         *
+         * See {@link com.android.server.policy.PolicyControl} for value format.
+         *
+         * @hide
+         */
+        public static final String POLICY_CONTROL = "policy_control";
 
         /**
          * @hide
