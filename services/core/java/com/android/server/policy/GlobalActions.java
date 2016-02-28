@@ -285,6 +285,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
+    private int getPowermenuAnimations() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.POWER_MENU_ANIMATIONS, 0);
+    }
+
     private float setPowerMenuAlpha() {
         int mPowerMenuAlpha = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.TRANSPARENT_POWER_MENU, 100);
