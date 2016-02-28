@@ -4168,6 +4168,13 @@ public final class Settings {
          */
         public static final String RECENT_APP_SIDEBAR_SCALE_FACTOR = "recent_app_sidebar_scale_factor";
 
+        /**
+         * Whether to display set of animations when prompting the power menu
+         *
+         * @hide
+         */
+        public static final String POWER_MENU_ANIMATIONS = "power_menu_animations";
+		
 		/**
          * Navigation bar button color
          * @hide
