@@ -4808,6 +4808,12 @@ public final class Settings {
         public static final String NOTIFICATION_PLAY_QUEUE = "notification_play_queue";
 
         /**
+         * Check the proximity sensor during wakeup
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4966,7 +4972,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POINTER_SPEED);
             PRIVATE_SETTINGS.add(LOCK_TO_APP_ENABLED);
             PRIVATE_SETTINGS.add(EGG_MODE);
-	    PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
+	        PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(QS_QUICK_PULLDOWN);
         }
 
