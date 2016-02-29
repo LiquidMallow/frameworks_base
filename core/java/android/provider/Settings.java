@@ -3224,6 +3224,7 @@ public final class Settings {
          */
         public static final String NOTIFICATION_LIGHT_PULSE_CALL_LED_OFF =
                 "notification_light_pulse_call_led_off";
+
         /**
          * What color to use for the voicemail notification LED
          * @hide
@@ -3296,7 +3297,7 @@ public final class Settings {
          * @hide
          */
         public static final String BATTERY_LIGHT_FULL_COLOR = "battery_light_full_color";
-		
+
 		/**
 		 * What color to use for the battery LED while charging - really full (100%)
          * @hide
@@ -3672,7 +3673,7 @@ public final class Settings {
          * @hide
          */
         public static final String VOLUME_DOWN_ZEN = "volume_down_zen";
-		
+
 		/**
          * Boolean value whether volume up in zen mode can exit zen mode
          * @hide
@@ -3717,7 +3718,7 @@ public final class Settings {
          * @hide
          */
         public static final String RECENTS_SEARCH_BAR = "recents_search_bar";
-		
+
 		/**
          * Whether to dismiss all recents tasks
          * @hide
@@ -3729,7 +3730,7 @@ public final class Settings {
          *  @hide
          */
         public static final String SYSTEMUI_RECENTS_MEM_DISPLAY = "systemui_recents_mem_display";
-		
+
 		/**
          * Whether to enable status and navigation bar color in battery saver mode.
          *
@@ -3930,13 +3931,13 @@ public final class Settings {
          */
         public static final String PA_PIE_CONFIG = "pa_pie_config";
 
-       /**
-        * PA Pie control panel. Meet him on the spot.
-        * 0 = off
-        * 1 = on
-        * Changes aspect depends on status bar visibility.
-        * @hide
-        */
+        /**
+         * PA Pie control panel. Meet him on the spot.
+         * 0 = off
+         * 1 = on
+         * Changes aspect depends on status bar visibility.
+         * @hide
+         */
         public static final String PA_PIE_STATE = "pa_pie_state";
 
         /**
@@ -4089,7 +4090,7 @@ public final class Settings {
          * @hide
          */
         public static final String PA_PIE_CHEVRON = "pa_pie_chevron";
-		
+
 		/**
          * If On-The-Go should be displayed at the power menu.
          *
@@ -4132,7 +4133,7 @@ public final class Settings {
          * @hide
          */
         public static final String WHITELIST_APP_CIRCLE_BAR = "whitelist_app_circle_bar";
-		
+
 	    /**
          * Width of the app circle bar trigger
          *
@@ -4289,7 +4290,7 @@ public final class Settings {
          * @hide
          */
         public static final String POWER_MENU_ANIMATIONS = "power_menu_animations";
-		
+
 		/**
          * Navigation bar button color
          * @hide
@@ -4483,7 +4484,7 @@ public final class Settings {
          * @hide
          */
         public static final String HIDE_LOCKSCREEN_DATE  = "hide_lockscreen_date";
-		
+
 		/**
          * Hide lockscreen clock
          * @hide
@@ -4523,25 +4524,25 @@ public final class Settings {
          * @hide
          */
         public static final String DASHBOARD_COLUMNS = "dashboard_columns";
-		
+
 		/**
          * Whether to display dashboard dividers
          * @hide
          */
         public static final String DASHBOARD_TILEVIEW_DIVIDERS = "dashboard_tileview_dividers";
-		
+
 		/**
          * Whether to display dashboard tiles in a double line layout
          * @hide
          */
         public static final String DASHBOARD_TILEVIEW_DOUBLE_LINES = "dashboard_tileview_double_lines";
-		
+
 		/**
          * Whether to show switches for wifi/cell/bt in the settings dashboard
          * @hide
          */
         public static final String DASHBOARD_SWITCHES = "dashboard_switches";
-		
+
 		/**
 		 * Transparent qs shade
          * @hide
@@ -4626,14 +4627,14 @@ public final class Settings {
          * @hide
          */
         public static final String HEADS_UP_CUSTOM_VALUES = "heads_up_custom_values";
-		
+
 		/**
          * Which applications to disable heads up notifications for
          *
          * @hide
          */
         public static final String HEADS_UP_BLACKLIST_VALUES = "heads_up_blacklist_values";
-		
+
 		/**
          * Which applications to post all notification to heads up
          *
@@ -4689,7 +4690,7 @@ public final class Settings {
          * @hide
          */
         public static final String PA_PIE_ALWAYS_RIGHT = "pa_pie_always_right";
-	
+
         /**
          * Quick Settings Smart Pulldown
          * @hide
@@ -4701,7 +4702,7 @@ public final class Settings {
          * @hide
          */
         public static final String DOUBLE_TAP_SLEEP_LOCK_SCREEN = "double_tap_sleep_lock_screen";
-	
+
 	    /**
 	     * Enable flashlight notification
          * @hide
@@ -4960,6 +4961,12 @@ public final class Settings {
          * @hide
          */
         public static final String HIDE_FROM_RECENTS_LIST = "hide_from_recents_list";
+
+	    /** Allow opening quick settings in floating window mode
+         *
+         * @hide
+         */
+        public static final String QS_FLOAT_MODE = "qs_float_mode";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

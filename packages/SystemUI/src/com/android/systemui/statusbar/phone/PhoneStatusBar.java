@@ -3459,6 +3459,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mAssistManager.hideAssist();
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                ContentResolver resolver = mContext.getContentResolver();
+                boolean floating = Settings.System.getBoolean(resolver, Settings.System.QS_FLOAT_MODE, false) == true;
+                if (floating) {
+                    intent.addFlags(Intent.FLAG_FLOATING_WINDOW);
+                }
                 int result = ActivityManager.START_CANCELED;
                 try {
                     result = ActivityManagerNative.getDefault().startActivityAsUser(
