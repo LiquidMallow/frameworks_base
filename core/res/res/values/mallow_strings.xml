@@ -43,6 +43,7 @@
     <!-- label for item that screenshots in phone options dialog -->
     <string name="global_action_screenshot">Screenshot</string>
     <string name="global_action_screenrecord">Screenrecord</string>
+    <string name="global_action_torch">Flashlight</string>
     <string name="global_action_current_user">Current</string>
 
     <!-- Title of dialog to confirm rebooting. -->

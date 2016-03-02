@@ -2049,6 +2049,7 @@
          "screenshot" = Take screenshot
          "screenrecord" = Take screen recording
          "profile" = Change phone's profile
+         "torch" = Toggle torch
          "airplane" = Airplane mode toggle
          "users" = list of users
          "settings" = An action to launch settings
@@ -2059,6 +2060,7 @@
     <string-array translatable="false" name="config_globalActionsList">
         <item>power</item>
         <item>reboot</item>
+        <item>torch</item>
         <item>users</item>
     </string-array>
 
