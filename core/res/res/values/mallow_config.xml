@@ -41,4 +41,7 @@
     <!-- BatteryLED fast charge -->
     <integer name="config_chargingFastThreshold">1500000</integer>
 
+    <!-- Wether doze feature is enabled by default in settings. -->
+    <bool name="config_doze_enabled_by_default">true</bool>
+
 </resources>
