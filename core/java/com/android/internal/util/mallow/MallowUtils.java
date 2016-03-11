@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.screwd;
+package com.android.internal.util.mallow;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -25,7 +25,7 @@ import android.hardware.camera2.CameraManager;
 
 import java.util.Locale;
 
-public class screwdUtils {
+public class MallowUtils {
 
     public static boolean isNavBarDefault(Context context) {
         return context.getResources().getBoolean(
@@ -64,5 +64,4 @@ public class screwdUtils {
         }
         return false;
     }
-
 }

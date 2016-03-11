@@ -3716,7 +3716,7 @@ public final class Settings {
          *
          * @hide
          */
-        public static final String BATTERY_SAVER_MODE_COLOR = "battery_save_mode_color"
+        public static final String BATTERY_SAVER_MODE_COLOR = "battery_save_mode_color";
 
         /**
          *  Enable navigation bar double tap gesture on to put device to sleep
@@ -3807,7 +3807,7 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
 
-		/**
+       /**
         * Network traffic indicator, goes from least to greatest significant bitwise
         * 0 = Display up-stream traffic if set
         * 1 = Display down-stream traffic if set
@@ -4101,11 +4101,6 @@ public final class Settings {
          */
         public static final String ON_THE_GO_SERVICE_RESTART = "on_the_go_service_restart";
 
-        /**
-         * @hide
-         */
-        public static final String PA_PIE_ALWAYS_RIGHT = "pa_pie_always_right";
-		
 	/**
 	 * Whether to display app circle sidebar
          * @hide
@@ -4358,6 +4353,12 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
+
+        /**
+         * show carrier in statusbar. The value is
+         * int (1: Show or 0: Hide).
+         */
+        public static final String STATUS_BAR_CARRIER = "status_bar_carrier";
 
         /**
          * custom carrier label. The value is
@@ -4690,12 +4691,6 @@ public final class Settings {
          * @hide
          */
         public static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
-
-	/**
-         * show the membar in recents
-         *  @hide
-         */
-        public static final String SYSTEMUI_RECENTS_MEM_DISPLAY = "systemui_recents_mem_display";
 
 	/**
 	 * change lockscreen alpha color

@@ -644,7 +644,6 @@ public class DhcpClient extends BaseDhcpStateMachine {
     }
 
     public boolean isValidPacket(DhcpPacket packet) {
-        // TODO: check checksum.
         if (packet == null)
             return false;
         int xid = packet.getTransactionId();
