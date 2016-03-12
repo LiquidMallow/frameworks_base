@@ -18,9 +18,6 @@
 -->
 <resources>
 
-    <dimen name="detail_radio_group_padding_left">16dp</dimen>
-    <dimen name="detail_radio_group_padding">8dp</dimen>
-
     <!-- Status bar temperature color -->
     <color name="fab_icon_color">@android:color/white</color>
 

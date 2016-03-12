@@ -146,6 +146,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
     private SettingsObserver mSettingsObserver;
     private boolean mShowBatteryTextExpanded;
+    private UserInfoController mUserInfoController;
 
     // QS header alpha
     private int mQSHeaderAlpha;
@@ -941,9 +942,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private void setQSHeaderAlpha() {
         if (mHeaderView != null) {
             mHeaderView.getBackground().setAlpha(mQSHeaderAlpha);
-        }
-        if (mBackgroundImage != null) {
-            mBackgroundImage.setAlpha(mQSHeaderAlpha);
         }
     }
 }

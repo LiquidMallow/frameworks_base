@@ -125,7 +125,7 @@ public class LockscreenToggleTile extends QSTile<QSTile.BooleanState>
 
     @Override
     public int getMetricsCategory() {
-        return MetricsLogger.SCREWD_SETTINGS;
+        return MetricsLogger.DONT_TRACK_ME_BRO;
     }
 
     @Override

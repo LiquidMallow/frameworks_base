@@ -130,6 +130,7 @@ import com.android.internal.util.slim.ActionConfig;
 import com.android.internal.util.slim.ActionConstants;
 import com.android.internal.util.slim.ActionHelper;
 import com.android.internal.util.slim.DeviceUtils;
+
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.BatteryLevelTextView;
 import com.android.systemui.DemoMode;
@@ -359,10 +360,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // Keyguard is going away soon.
     private boolean mKeyguardGoingAway;
     // Keyguard is actually fading away now.
-
-    // Status bar brightness
-    private int mStatusBarHeaderHeight;
-
     private boolean mKeyguardFadingAway;
     private boolean mKeyguardShowingMedia;
     private long mKeyguardFadingAwayDelay;
@@ -470,7 +467,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR),
                     false, this, UserHandle.USER_ALL);
-	        resolver.registerContentObserver(Settings.System.getUriFor(
+	    resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_BUTTON_TINT),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -566,6 +563,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
                 mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
             }
+
+            int sidebarPosition = Settings.System.getInt(resolver,
+                    Settings.System.APP_SIDEBAR_POSITION, 
+                    AppSidebar.SIDEBAR_POSITION_LEFT);
+            if (sidebarPosition != mSidebarPosition) {
+                mSidebarPosition = sidebarPosition;
+                mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
+            }
+        }
     }
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
@@ -981,6 +987,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 	if (!mRecreating) {
             addGestureAnywhereView();
             addAppCircleSidebar();
+            addSidebarView();
         }
 
         if (mAssistManager == null) {
@@ -991,9 +998,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNavigationBarView =
                 (NavigationBarView) View.inflate(context, R.layout.navigation_bar, null);
         }
-
-        addGestureAnywhereView();
-        addSidebarView();
 
         mNavigationBarView.setBar(this);
         mNavigationBarView.setOnVerticalChangedListener(
@@ -2700,7 +2704,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     ServiceManager.getService("power"));
             if (power != null) {
                 if (mAutomaticBrightness) {
-                    float adj = (value * 100) / (BRIGHTNESS_ADJ_RESOLUTION / 2f) - 1;
+                    float adj = (2 * value) - 1;
                     adj = Math.max(adj, -1);
                     adj = Math.min(adj, 1);
                     final float val = adj;
@@ -2722,7 +2726,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     AsyncTask.execute(new Runnable() {
                         @Override
                         public void run() {
-                            Settings.System.putFloatForUser(mContext.getContentResolver(),
+                            Settings.System.putIntForUser(mContext.getContentResolver(),
                                     Settings.System.SCREEN_BRIGHTNESS, val,
                                     UserHandle.USER_CURRENT);
                         }
@@ -3565,17 +3569,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
         if (mBatteryController != null) {
             mBatteryController.setUserId(mCurrentUserId);
-        }
-    }
-
-    private void updateSettings() {
-        ContentResolver resolver = mContext.getContentResolver();
-        int sidebarPosition = Settings.System.getInt(resolver,
-                Settings.System.APP_SIDEBAR_POSITION, 
-                AppSidebar.SIDEBAR_POSITION_LEFT);
-        if (sidebarPosition != mSidebarPosition) {
-            mSidebarPosition = sidebarPosition;
-            mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
         }
     }
 
