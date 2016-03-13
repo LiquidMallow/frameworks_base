@@ -241,10 +241,14 @@ public final class PersistableBundle extends BaseBundle implements Cloneable, Pa
         final int outerDepth = in.getDepth();
         final String startTag = in.getName();
         final String[] tagName = new String[1];
-        if (XmlUtils.nextElementWithin(in, outerDepth)) {
-            return new PersistableBundle((ArrayMap<String, Object>)
-                    XmlUtils.readThisArrayMapXml(in, startTag, tagName,
-                    new MyReadMapCallback()));
+        int event;
+        while (((event = in.next()) != XmlPullParser.END_DOCUMENT) &&
+                (event != XmlPullParser.END_TAG || in.getDepth() < outerDepth)) {
+            if (event == XmlPullParser.START_TAG) {
+                return new PersistableBundle((ArrayMap<String, Object>)
+                        XmlUtils.readThisArrayMapXml(in, startTag, tagName,
+                        new MyReadMapCallback()));
+            }
         }
         return EMPTY;
     }

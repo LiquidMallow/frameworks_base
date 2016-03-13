@@ -171,7 +171,7 @@ final class ActivityRecord {
     boolean forceNewConfig; // force re-create with new config next time
     int launchCount;        // count of launches since last state
     long lastLaunchTime;    // time of last lauch of this activity
-    ArrayList<ActivityContainer> mChildContainers = new ArrayList<>();
+    ArrayList<ActivityContainer> mChildContainers = new ArrayList<ActivityContainer>();
 
     String stringName;      // for caching of toString().
 
@@ -679,7 +679,7 @@ final class ActivityRecord {
         ActivityResult r = new ActivityResult(from, resultWho,
                 requestCode, resultCode, resultData);
         if (results == null) {
-            results = new ArrayList<>();
+            results = new ArrayList<ResultInfo>();
         }
         results.add(r);
     }
@@ -1228,21 +1228,25 @@ final class ActivityRecord {
             }
         }
 
-        while (XmlUtils.nextElementWithin(in, outerDepth)) {
-            final String name = in.getName();
-            if (TaskPersister.DEBUG) Slog.d(TaskPersister.TAG,
-                    "ActivityRecord: START_TAG name=" + name);
-            if (TAG_INTENT.equals(name)) {
-                intent = Intent.restoreFromXml(in);
-                if (TaskPersister.DEBUG) Slog.d(TaskPersister.TAG,
-                        "ActivityRecord: intent=" + intent);
-            } else if (TAG_PERSISTABLEBUNDLE.equals(name)) {
-                persistentState = PersistableBundle.restoreFromXml(in);
-                if (TaskPersister.DEBUG) Slog.d(TaskPersister.TAG,
-                        "ActivityRecord: persistentState=" + persistentState);
-            } else {
-                Slog.w(TAG, "restoreActivity: unexpected name=" + name);
-                XmlUtils.skipCurrentTag(in);
+        int event;
+        while (((event = in.next()) != XmlPullParser.END_DOCUMENT) &&
+                (event != XmlPullParser.END_TAG || in.getDepth() < outerDepth)) {
+            if (event == XmlPullParser.START_TAG) {
+                final String name = in.getName();
+                if (TaskPersister.DEBUG)
+                        Slog.d(TaskPersister.TAG, "ActivityRecord: START_TAG name=" + name);
+                if (TAG_INTENT.equals(name)) {
+                    intent = Intent.restoreFromXml(in);
+                    if (TaskPersister.DEBUG)
+                            Slog.d(TaskPersister.TAG, "ActivityRecord: intent=" + intent);
+                } else if (TAG_PERSISTABLEBUNDLE.equals(name)) {
+                    persistentState = PersistableBundle.restoreFromXml(in);
+                    if (TaskPersister.DEBUG) Slog.d(TaskPersister.TAG,
+                            "ActivityRecord: persistentState=" + persistentState);
+                } else {
+                    Slog.w(TAG, "restoreActivity: unexpected name=" + name);
+                    XmlUtils.skipCurrentTag(in);
+                }
             }
         }
 
