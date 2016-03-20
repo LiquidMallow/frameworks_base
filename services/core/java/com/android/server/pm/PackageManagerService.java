@@ -6317,16 +6317,8 @@ public class PackageManagerService extends IPackageManager.Stub {
             Log.i(TAG, "Optimizing app " + curr + " of " + total + ": " + pkg.packageName);
         }
         try {
-            // give the packagename to the PhoneWindowManager
-            ApplicationInfo ai;
-            try {
-                ai = mContext.getPackageManager().getApplicationInfo(pkg.packageName, 0);
-            } catch (Exception e) {
-                ai = null;
-            }
-            mPolicy.setPackageName((String) (ai != null ? mContext.getPackageManager().getApplicationLabel(ai) : pkg.packageName));
-
-            ActivityManagerNative.getDefault().showBootMessage(pkg.applicationInfo, curr, total, true);
+            ActivityManagerNative.getDefault().showBootMessage(pkg.applicationInfo,
+                    curr, total, true);
         } catch (RemoteException e) {
         }
 

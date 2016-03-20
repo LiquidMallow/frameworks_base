@@ -5289,7 +5289,7 @@ class ActivityManagerProxy implements IActivityManager
     }
 
     public void showBootMessage(ApplicationInfo info, int current, int total,
-            boolean always) throws RemoteException {
+        boolean always) throws RemoteException {
         Parcel data = Parcel.obtain();
         Parcel reply = Parcel.obtain();
         data.writeInterfaceToken(IActivityManager.descriptor);

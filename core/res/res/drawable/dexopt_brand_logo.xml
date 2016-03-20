@@ -16,5 +16,4 @@
 -->
 
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/mallow_logo"
-    android:tint="@color/dexopt_progressTint"/>
+    android:src="@drawable/logo_mallow" />

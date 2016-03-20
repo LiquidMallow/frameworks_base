@@ -22,7 +22,6 @@ import android.app.ActivityManagerInternal.SleepToken;
 import android.app.ActivityManagerNative;
 import android.app.AppOpsManager;
 import android.app.IUiModeManager;
-import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.app.StatusBarManager;
 import android.app.UiModeManager;
@@ -133,9 +132,10 @@ import com.android.internal.util.ScreenShapeHelper;
 import com.android.internal.widget.PointerLocationView;
 import com.android.server.GestureLauncherService;
 import com.android.server.LocalServices;
-import org.mallow.internal.BootDexoptDialog;
 import com.android.server.policy.keyguard.KeyguardServiceDelegate;
 import com.android.server.policy.keyguard.KeyguardServiceDelegate.DrawnListener;
+
+import org.mallow.internal.BootDexoptDialog;
 
 import java.io.File;
 import java.io.FileReader;
@@ -6735,6 +6735,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     BootDexoptDialog mBootMsgDialog = null;
+
     /**
      * name of package currently being dex optimized
      * as shown through this.showBootMessage(msg, always);
@@ -6754,7 +6755,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mHandler.post(new Runnable() {
             @Override public void run() {
                 if (mBootMsgDialog == null) {
-                   mBootMsgDialog = BootDexoptDialog.create(mContext);
+                    mBootMsgDialog = BootDexoptDialog.create(mContext);
                 }
                 mBootMsgDialog.setProgress(info, current, total);
             }
