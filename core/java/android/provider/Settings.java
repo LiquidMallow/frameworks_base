@@ -7411,12 +7411,6 @@ public final class Settings {
          */
         public static final String ASSISTANT = "assistant";
 
-        /**
-         * Whether to allow killing of the foreground app by long-pressing the Back button
-         * @hide
-         */
-        public static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
-
         /** Whether to show the brightness slider in quick settings panel.
          *
          * @hide
@@ -7436,7 +7430,7 @@ public final class Settings {
          */
         public static final String QS_LOCATION_ADVANCED = "qs_location_advanced";
 
-	/**
+	    /**
          * Use "main" tiles on the first row of the quick settings panel
          * 0 = no, 1 = yes
          * @hide
@@ -7444,10 +7438,10 @@ public final class Settings {
         public static final String QS_USE_MAIN_TILES = "sysui_qs_main_tiles";
 
         /** Whether to vibrate when quick settings tile is pressed.
-          *
-          * @hide
-          */
-         public static final String QUICK_SETTINGS_TILES_VIBRATE = "quick_settings_vibrate";
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_TILES_VIBRATE = "quick_settings_vibrate";
 
         /**
          * Whether the camera launch gesture should be disabled.
@@ -7464,12 +7458,6 @@ public final class Settings {
          */
         public static final String CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED =
                 "camera_double_tap_power_gesture_disabled";
-
-        /**
-         * Beginning of Screw'd Secure Settings Additions
-         * @hide
-         */
-
 
         /**
          * The TCP/IP port to run ADB on, or -1 for USB

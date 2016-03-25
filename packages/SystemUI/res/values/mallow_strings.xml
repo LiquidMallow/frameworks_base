@@ -50,9 +50,6 @@
     <string name="systemui_tuner_statusbar_title">Statusbar Items</string>
     <string name="systemui_tuner_qs_title">Quick Settings</string>
 
-    <!-- Kill app toast -->
-    <string name="app_killed_message">App Killed</string>
-
     <!-- Screenshot -->
     <string name="shortcut_screenshot">Screenshot</string>
 
@@ -330,5 +327,8 @@
 
     <!-- Play queue -->
     <string name="play_queue_extention">Show play queue</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App Killed</string>
 
 </resources>

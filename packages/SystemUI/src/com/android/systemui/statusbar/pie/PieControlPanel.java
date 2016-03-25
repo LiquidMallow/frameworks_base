@@ -384,7 +384,7 @@ public class PieControlPanel extends FrameLayout implements OnNavButtonPressedLi
                 return; // don't kill SystemUI
             if (!defaultHomePackage.equals(packageName)) {
                 am.forceStopPackage(packageName);
-                Toast.makeText(mContext, com.android.internal.R.string.app_killed_message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, R.string.app_killed_message, Toast.LENGTH_SHORT).show();
             }
         }
     }
