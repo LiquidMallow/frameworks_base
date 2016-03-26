@@ -3826,33 +3826,33 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
 
-       /**
-        * Network traffic indicator, goes from least to greatest significant bitwise
-        * 0 = Display up-stream traffic if set
-        * 1 = Display down-stream traffic if set
-        * 2 = Show as Byte/s if set
-        * 16-31 = Refresh interval(ms) min: 250 max: 32750 default: 1000
-        * @hide
-        */
-       public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
+        /**
+         * Network traffic indicator, goes from least to greatest significant bitwise
+         * 0 = Display up-stream traffic if set
+         * 1 = Display down-stream traffic if set
+         * 2 = Show as Byte/s if set
+         * 16-31 = Refresh interval(ms) min: 250 max: 32750 default: 1000
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
 
-       /**
-        * Network stats Color style
-        * @hide
-        */
-       public static final String NETWORK_TRAFFIC_COLOR = "network_traffic_color";
+        /**
+         * Network stats Color style
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_COLOR = "network_traffic_color";
 
-       /**
-        * Whether or not to hide the network traffic indicator when there is no activity
-        * @hide
-        */
-       public static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
+        /**
+         * Whether or not to hide the network traffic indicator when there is no activity
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
 
-       /**
-        * Network traffic inactivity threshold (default is 10 kBs)
-        * @hide
-        */
-       public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
+        /**
+         * Network traffic inactivity threshold (default is 10 kBs)
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
 
         /**
          * Show or hide clock
@@ -4120,8 +4120,8 @@ public final class Settings {
          */
         public static final String ON_THE_GO_SERVICE_RESTART = "on_the_go_service_restart";
 
-	/**
-	 * Whether to display app circle sidebar
+	    /**
+	     * Whether to display app circle sidebar
          * @hide
          */
         public static final String ENABLE_APP_CIRCLE_BAR = "enable_app_circle_bar";
@@ -4133,7 +4133,7 @@ public final class Settings {
          */
         public static final String WHITELIST_APP_CIRCLE_BAR = "whitelist_app_circle_bar";
 		
-	/**
+	    /**
          * Width of the app circle bar trigger
          *
          * @hide
@@ -4874,7 +4874,7 @@ public final class Settings {
          */
         public static final String ALLOW_LIGHTS = "allow_lights";
 
-        /**  
+        /**
          * AOKP Custom System Animations
          * @hide
          */  
@@ -4892,6 +4892,23 @@ public final class Settings {
                 "task_open_behind",
         };  
         public static final String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
+
+        /**
+         * Whether the user has enabled headsup (Default 1)
+         * HeadsUp is enabled by default within its Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED
+         * setting. Avoid changing low level implementations and use a System setting to
+         * override per-user heads up on/off preference.
+         *
+         * Enable headsup = 1 (on by default)
+         * Disable headsup = 0
+         *
+         * @see com.android.systemui.statusbar.BaseStatusBar#addNotification
+         * @hide
+         */
+        public static final String HEADS_UP_USER_ENABLED = "heads_up_user_enabled";
+
+        /** @hide */ public static final int HEADS_UP_USER_OFF = 0;
+        /** @hide */ public static final int HEADS_UP_USER_ON = 1;
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
