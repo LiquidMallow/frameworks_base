@@ -51,11 +51,9 @@ public class TunerFragment extends PreferenceFragment {
     private static final String KEY_DEMO_MODE = "demo_mode";
 
     public static final String SETTING_SEEN_TUNER_WARNING = "seen_tuner_warning";
-    private static final String SHOW_BLUETOOTH_ICON = "show_bluetooth_icon";
 	private static final String SHOW_FOURG = "show_fourg";
 
     private SwitchPreference mShowFourG;
-    private SwitchPreference mShowBtConnected;
 
     private final SettingObserver mSettingObserver = new SettingObserver();
 
@@ -72,10 +70,6 @@ public class TunerFragment extends PreferenceFragment {
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         setHasOptionsMenu(true);
 
-        mShowBtConnected = (SwitchPreference) findPreference(SHOW_BLUETOOTH_ICON);
-        mShowBtConnected.setChecked((Settings.System.getInt(resolver,
-                Settings.System.SHOW_BLUETOOTH_ICON, 0) == 1));
-				
 		mShowFourG = (SwitchPreference) findPreference(SHOW_FOURG);
         if (MallowUtils.isWifiOnly(getActivity())) {
             prefSet.removePreference(mShowFourG);
@@ -164,12 +158,7 @@ public class TunerFragment extends PreferenceFragment {
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if  (preference == mShowBtConnected) {
-            boolean checked = ((SwitchPreference)preference).isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.SHOW_BLUETOOTH_ICON, checked ? 1:0);
-            return true;
-		} else if  (preference == mShowFourG) {
+		if  (preference == mShowFourG) {
             boolean checked = ((SwitchPreference)preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SHOW_FOURG, checked ? 1:0);
