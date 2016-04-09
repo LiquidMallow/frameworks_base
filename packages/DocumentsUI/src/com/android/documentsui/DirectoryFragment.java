@@ -615,6 +615,7 @@ public class DirectoryFragment extends Fragment {
                 if (cursor != null) {
                     final String docMimeType = getCursorString(cursor, Document.COLUMN_MIME_TYPE);
                     final int docFlags = getCursorInt(cursor, Document.COLUMN_FLAGS);
+
                     final State state = getDisplayState(DirectoryFragment.this);
                     if (Document.MIME_TYPE_DIR.equals(docMimeType)) {
                         hasFolder = true;

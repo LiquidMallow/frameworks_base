@@ -607,13 +607,6 @@ public class ZenModePanel extends LinearLayout {
         if (DEBUG) Log.d(mTag, "bind i=" + mZenConditions.indexOfChild(row) + " first=" + first
                 + " condition=" + conditionId);
         tag.rb.setEnabled(enabled);
-        final boolean checked = (mSessionExitCondition != null
-                    || mAttachedZen != Global.ZEN_MODE_OFF)
-                && (sameConditionId(mSessionExitCondition, tag.condition));
-        if (checked != tag.rb.isChecked()) {
-            if (DEBUG) Log.d(mTag, "bind checked=" + checked + " condition=" + conditionId);
-            tag.rb.setChecked(checked);
-        }
         tag.rb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
