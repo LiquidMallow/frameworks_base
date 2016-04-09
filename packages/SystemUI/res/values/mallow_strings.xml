@@ -45,7 +45,7 @@
     <string name="app_float_maximize_item_title">Maximize</string>
     <string name="app_float_item_title">Float view</string>
     <string name="app_stop_item_title">Kill app</string>
-    
+
     <!-- SystemUI Tuner Parts -->
     <string name="systemui_tuner_statusbar_title">Statusbar Items</string>
     <string name="systemui_tuner_qs_title">Quick Settings</string>
@@ -238,7 +238,7 @@
 
     <!-- IME selector Tile -->
     <string name="quick_settings_ime_label">IME</string>
-    
+
     <!-- Lockscreen QS Tile -->
     <string name="quick_settings_lockscreen_label">Lock screen</string>
     <string name="quick_settings_lockscreen_label_enforced">Lock screen enforced</string>
@@ -258,7 +258,7 @@
 
     <!-- NFC QS tile -->
     <string name="quick_settings_nfc_label">NFC</string>
-    
+
     <!-- Pie tile -->
     <string name="quick_settings_pie_label">Pie</string>
 
@@ -333,10 +333,13 @@
 
     <!-- bt only connected switch -->
     <string name="status_bar_btcon">Bluetooth only when connected</string>
-    
+
     <!-- 4G LTE switch -->
     <string name="show_fourg_title">Show 4G instead of LTE</string>
     <string name="show_fourg_summary">Replaces LTE statusbar indicator with 4G</string>
     <string name="statusbar_tuner_category_title">Hide items from statusbar</string>
-    
+
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message">Heads up is snoozing for <xliff:g id="number">%d</xliff:g> minutes.</string>
+
 </resources>
