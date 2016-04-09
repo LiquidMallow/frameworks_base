@@ -49,7 +49,10 @@ public class AmbientDisplayTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     protected void handleLongClick() {
-        mHost.startActivityDismissingKeyguard(DISPLAY_SETTINGS);
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.android.settings",
+            "com.android.settings.Settings$AmbientDisplayActivity");
+        mHost.startActivityDismissingKeyguard(intent);
     }
 
     private void setEnabled() {
