@@ -41,7 +41,6 @@ public class MultiUserSwitch extends FrameLayout implements View.OnClickListener
     private KeyguardUserSwitcher mKeyguardUserSwitcher;
     private boolean mKeyguardMode;
     private UserSwitcherController.BaseUserAdapter mUserListener;
-    private ActivityStarter mActivityStarter;
 
     final UserManager mUserManager;
     private ActivityStarter mActivityStarter;
@@ -80,10 +79,6 @@ public class MultiUserSwitch extends FrameLayout implements View.OnClickListener
     public void setKeyguardMode(boolean keyguardShowing) {
         mKeyguardMode = keyguardShowing;
         registerListener();
-    }
-
-    public void setActivityStarter(ActivityStarter activityStarter) {
-        mActivityStarter = activityStarter;
     }
 
     private void registerListener() {
@@ -130,14 +125,13 @@ public class MultiUserSwitch extends FrameLayout implements View.OnClickListener
                         mTmpInt2);
             }
         } else {
+            Intent intent = ContactsContract.QuickContact.composeQuickContactsIntent(
+                    getContext(), v, ContactsContract.Profile.CONTENT_URI,
+                    ContactsContract.QuickContact.MODE_LARGE, null);
             if (mActivityStarter != null) {
-                Intent intent = ContactsContract.QuickContact.composeQuickContactsIntent(
-                        getContext(), v, ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.QuickContact.MODE_LARGE, null);
-                mActivityStarter.startActivity(intent, true);
-            }
-            if (mQsPanel != null) {
-                mQsPanel.getHost().collapsePanels();
+                mActivityStarter.startActivity(intent, true /* dismissShade */);
+            } else {
+                getContext().startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
             }
         }
         mQsPanel.vibrateTile(20);
