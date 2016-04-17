@@ -4518,12 +4518,6 @@ public final class Settings {
          */
         public static final String SCREENSHOT_SOUND = "screenshot_sound";
 
-        /**
-         * Display second in the Clock
-         * @hide
-         */
-        public static final String CLOCK_USE_SECOND = "clock_use_second";
-		
 		/**
          * Change the number of columns displayed in the Settings dashboard
          * @hide
