@@ -4594,7 +4594,7 @@ public final class Settings {
          */
         public static final String IMMERSIVE_RECENTS = "immersive_recents";
 
-	/**
+	    /**
          * Whether to display the trigger region or not
          *
          * Whether to dim the navigation bar icons after inactivity
@@ -4666,20 +4666,6 @@ public final class Settings {
         public static final String HEADS_UP_WHITELIST_VALUES = "heads_up_whitelist_values";
 
         /**
-         * Timeout for Heads Up
-         *
-         * @hide
-         */
-        public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
-
-        /**
-         * Snooze time for heads up
-         *
-         * @hide
-         */
-        public static final String HEADS_UP_SNOOZE_LENGTH_MS = "heads_up_snooze_length_ms";
-
-        /**
          * Whether the proximity sensor will adjust call to speaker
          * @hide
          */
@@ -4705,14 +4691,14 @@ public final class Settings {
          */
         public static final String SAFE_HEADSET_VOLUME = "safe_headset_volume";
 
-	/**
-	 * whether to enable torch on lockscreen
+	    /**
+	     * whether to enable torch on lockscreen
          * @hide
          */
         public static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
 
-	/**
-	 * change lockscreen alpha color
+	    /**
+	     * change lockscreen alpha color
          * @hide
          */
         public static final String LOCKSCREEN_ALPHA = "lockscreen_alpha";
@@ -4734,14 +4720,14 @@ public final class Settings {
          */
         public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
-	/**
-	 * Enable double tap gesture anywhere on the lock screen put device to sleep
+	    /**
+	     * Enable double tap gesture anywhere on the lock screen put device to sleep
          * @hide
          */
         public static final String DOUBLE_TAP_SLEEP_LOCK_SCREEN = "double_tap_sleep_lock_screen";
 	
-	/**
-	 *  Enable flashlight notification
+	    /**
+	     * Enable flashlight notification
          * @hide
          */
         public static final String FLASHLIGHT_NOTIFICATION = "flashlight_notification";
