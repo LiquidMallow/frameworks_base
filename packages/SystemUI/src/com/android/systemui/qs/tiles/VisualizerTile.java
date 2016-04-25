@@ -41,6 +41,7 @@ import com.pheelicks.visualizer.AudioData;
 import com.pheelicks.visualizer.FFTData;
 import com.pheelicks.visualizer.VisualizerView;
 import com.pheelicks.visualizer.renderer.Renderer;
+import com.android.internal.logging.MetricsLogger;
 
 public class VisualizerTile extends QSTile<QSTile.BooleanState>  implements KeyguardMonitor.Callback {
 
