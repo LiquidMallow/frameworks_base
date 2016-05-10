@@ -182,6 +182,13 @@ public class ThemesContract {
          */
         public static final String MODIFIES_NAVIGATION_BAR = "mods_navigation_bar";
 
+		/**
+         * 1 if theme has an overlay for SystemUI/StatusBar headers
+         * <P>Type: INTEGER</P>
+         * <P>Default: 0</P>
+         */
+        public static final String MODIFIES_STATUSBAR_HEADERS = "mods_statusbar_headers";
+
         /**
          * 1 if theme has a live lock screen
          * <P>Type: INTEGER</P>
@@ -323,6 +330,7 @@ public class ThemesContract {
         public static final String KEY_RINGTONE = "mixnmatch_ringtone";
         public static final String KEY_OVERLAYS = "mixnmatch_overlays";
         public static final String KEY_NAVIGATION_BAR = "mixnmatch_navigation_bar";
+		public static final String KEY_STATUSBAR_HEADERS = "mixnmatch_statusbar_headers";
         public static final String KEY_LIVE_LOCK_SCREEN = "mixnmatch_live_lock_screen";
 
         public static final String[] ROWS = { KEY_HOMESCREEN,
@@ -336,6 +344,7 @@ public class ThemesContract {
             KEY_ALARM,
             KEY_OVERLAYS,
             KEY_NAVIGATION_BAR,
+			KEY_STATUSBAR_HEADERS,
             KEY_LIVE_LOCK_SCREEN
         };
 
@@ -370,6 +379,9 @@ public class ThemesContract {
             } else if (component.equals(MixnMatchColumns.KEY_NAVIGATION_BAR)) {
                 throw new IllegalArgumentException(
                         "Navigation bar mixnmatch component does not have a related column");
+			} else if (component.equals(MixnMatchColumns.KEY_STATUSBAR_HEADERS)) {
+                throw new IllegalArgumentException(
+                        "Status bar headers mixnmatch component does not have a related column");
             } else if (component.equals(MixnMatchColumns.KEY_LIVE_LOCK_SCREEN)) {
                 throw new IllegalArgumentException(
                         "Live lock screen mixnmatch component does not have a related column");
@@ -404,6 +416,8 @@ public class ThemesContract {
                 return MixnMatchColumns.KEY_STATUS_BAR;
             } else if (component.equals(ThemesColumns.MODIFIES_NAVIGATION_BAR)) {
                 return MixnMatchColumns.KEY_NAVIGATION_BAR;
+			} else if (component.equals(ThemesColumns.MODIFIES_STATUSBAR_HEADERS)) {
+                return MixnMatchColumns.KEY_STATUSBAR_HEADERS;
             } else if (component.equals(ThemesColumns.MODIFIES_LIVE_LOCK_SCREEN)) {
                 return MixnMatchColumns.KEY_LIVE_LOCK_SCREEN;
             }
@@ -437,6 +451,8 @@ public class ThemesContract {
                 return ThemesColumns.MODIFIES_STATUS_BAR;
             } else if (mixnmatchKey.equals(MixnMatchColumns.KEY_NAVIGATION_BAR)) {
                 return ThemesColumns.MODIFIES_NAVIGATION_BAR;
+			} else if (mixnmatchKey.equals(MixnMatchColumns.KEY_STATUSBAR_HEADERS)) {
+                return ThemesColumns.MODIFIES_STATUSBAR_HEADERS;
             } else if (mixnmatchKey.equals(MixnMatchColumns.KEY_LIVE_LOCK_SCREEN)) {
                 return ThemesColumns.MODIFIES_LIVE_LOCK_SCREEN;
             }
@@ -652,6 +668,24 @@ public class ThemesContract {
          */
         public static final String BOOTANIMATION_THUMBNAIL = "bootanimation_thumbnail";
 
+		/**
+         * Cached image of statusbar headers
+         * <P>Type: String (file path)</P>
+         */
+        public static final String HEADER_PREVIEW_1 = "headers_preview_1";
+
+        /**
+         * Cached image of statusbar headers
+         * <P>Type: String (file path)</P>
+         */
+        public static final String HEADER_PREVIEW_2 = "headers_preview_2";
+
+        /**
+         * Cached image of statusbar headers
+         * <P>Type: String (file path)</P>
+         */
+        public static final String HEADER_PREVIEW_3 = "headers_preview_3";
+
         /**
          * Cached preview of live lock screen
          * <P>Type: String (file path)</P>
@@ -689,6 +723,9 @@ public class ThemesContract {
             STYLE_PREVIEW,
             STYLE_THUMBNAIL,
             BOOTANIMATION_THUMBNAIL,
+			HEADER_PREVIEW_1,
+            HEADER_PREVIEW_2,
+            HEADER_PREVIEW_3,
             LIVE_LOCK_SCREEN_PREVIEW,
             LIVE_LOCK_SCREEN_THUMBNAIL,
         };
