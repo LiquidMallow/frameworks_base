@@ -401,7 +401,7 @@ public final class ScriptGroup extends BaseObj {
         for (int i = 0; i < closureIDs.length; i++) {
             closureIDs[i] = closures.get(i).getID(rs);
         }
-        long id = rs.nScriptGroup2Create(name, rs.getCachePath(), closureIDs);
+        long id = rs.nScriptGroup2Create(name, ScriptC.mCachePath, closureIDs);
         setID(id);
         guard.open("destroy");
     }
