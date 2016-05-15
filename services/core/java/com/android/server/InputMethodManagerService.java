@@ -667,11 +667,6 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
         }
 
         @Override
-        public void onPackageModified(String packageName) {
-            onSomePackagesChanged();
-        }
-
-        @Override
         public void onSomePackagesChanged() {
             if (!isChangingPackagesOfCurrentUser()) {
                 return;
