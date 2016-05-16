@@ -384,4 +384,8 @@
     <string name="quick_settings_v4a_label">ViPER4Android</string>
     <string name="accessibility_quick_settings_v4a">ViPER4Android.</string>
 
+    <!-- Visualizer tile -->
+    <string name="quick_settings_visualizer_label">AudioFX</string>
+    <string name="accessibility_quick_settings_visualizer">Visualizer</string>
+
 </resources>

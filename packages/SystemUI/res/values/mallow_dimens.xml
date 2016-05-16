@@ -69,6 +69,8 @@
     <dimen name="pie_touch_offset">15dp</dimen>
     <dimen name="pie_tab_title_height">24dp</dimen>
     <dimen name="pie_panel_padding">20dp</dimen>
+    
+    <dimen name="qs_tile_icon_size_visualizer">40dp</dimen>
 
     <!-- App circle sidebar -->
     <dimen name="app_sidebar_trigger_width">12dip</dimen>
