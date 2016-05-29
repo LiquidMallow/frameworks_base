@@ -5021,10 +5021,10 @@ public final class Settings {
          */
         public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
 
-       /**
-        * USB Data automatic unlock
-        */
-       public static final String USB_DATA_AUTO_UNLOCK = "usb_data_auto_unlock";
+        /**
+         * USB Data automatic unlock
+         */
+        public static final String USB_DATA_AUTO_UNLOCK = "usb_data_auto_unlock";
 
         /**
          * Whether to use the proximity sensor to turn the screen on/off during a call
@@ -5044,13 +5044,13 @@ public final class Settings {
          */
         public static final String SETTINGS_CATEGORY_TEXT_SIZE = "settings_category_text_size";
 
-       /**
-        * MediaScanner behavior on boot.
-        * 0 = enabled
-        * 1 = ask (notification)
-        * 2 = disabled
-        * @hide
-        */
+        /**
+         * MediaScanner behavior on boot.
+         * 0 = enabled
+         * 1 = ask (notification)
+         * 2 = disabled
+         * @hide
+         */
         public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
 
         /**
@@ -5058,6 +5058,18 @@ public final class Settings {
          * @hide
          */
         public static final String WAKEUP_SCREEN_WHEN_CALL_DISCONNECTED = "wakeup_screen_when_call_disconnected";
+
+	    /**
+         * Define if screenshot crop and share is active
+         * @hide
+         */
+        public static final String SCREENSHOT_CROP_AND_SHARE = "screenshot_crop_and_share";
+
+        /**
+         * Define the crop behavior of screenshot crop and share
+         * @hide
+         */
+        public static final String SCREENSHOT_CROP_BEHAVIOR = "screenshot_crop_behavior";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
