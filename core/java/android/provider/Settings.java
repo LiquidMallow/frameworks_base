@@ -5021,10 +5021,27 @@ public final class Settings {
          */
         public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
 
-       /**
-        * USB Data automatic unlock
-        */
-       public static final String USB_DATA_AUTO_UNLOCK = "usb_data_auto_unlock";
+        /**
+         * USB Data automatic unlock
+         */
+        public static final String USB_DATA_AUTO_UNLOCK = "usb_data_auto_unlock";
+
+	    /**
+         * @hide
+         */
+        public static final String LOCK_SCREEN_VISUALIZER_SHOW = "lock_screen_visualizer_show";
+
+        /**
+         *  Weather to use a custom color for the visualizer on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR = "lock_screen_visualizer_use_custom_color";
+
+        /**
+         *  Custom color of the visualizer on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_VISUALIZER_CUSTOM_COLOR = "lock_screen_visualizer_custom_color";
 
         /**
          * Whether to use the proximity sensor to turn the screen on/off during a call
