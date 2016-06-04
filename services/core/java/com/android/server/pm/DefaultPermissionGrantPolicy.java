@@ -20,7 +20,6 @@ import android.Manifest;
 import android.app.DownloadManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManagerInternal.PackagesProvider;
@@ -259,7 +258,6 @@ final class DefaultPermissionGrantPolicy {
                     && doesPackageSupportRuntimePermissions(setupPackage)) {
                 grantRuntimePermissionsLPw(setupPackage, PHONE_PERMISSIONS, true, userId);
                 grantRuntimePermissionsLPw(setupPackage, CONTACTS_PERMISSIONS, userId);
-
             }
 
             // Camera
@@ -575,25 +573,24 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(musicPackage, STORAGE_PERMISSIONS, userId);
             }
 
-            // Chromium Regular
-            PackageParser.Package chromiumPackageReg = getDefaultProviderAuthorityPackageLPr(
-                    "org.chromium.chrome", userId);
-            if (chromiumPackageReg != null) {
-                grantRuntimePermissionsLPw(chromiumPackageReg, CONTACTS_PERMISSIONS, userId);
-            }
+            // Android Wear Home
+            if (mService.hasSystemFeature(PackageManager.FEATURE_WATCH)) {
+                Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                homeIntent.addCategory(Intent.CATEGORY_HOME_MAIN);
 
-            // Chromium Other
-            PackageParser.Package chromiumPackageOther = getDefaultProviderAuthorityPackageLPr(
-                    "org.swe.atego.browser", userId);
-            if (chromiumPackageOther != null) {
-                grantRuntimePermissionsLPw(chromiumPackageOther, CONTACTS_PERMISSIONS, userId);
-            }
+                PackageParser.Package wearHomePackage = getDefaultSystemHandlerActivityPackageLPr(
+                        homeIntent, userId);
 
-            // SaberChrome
-            PackageParser.Package chromiumPackageSaber = getDefaultProviderAuthorityPackageLPr(
-                    "org.frap129.saberchrome.browser", userId);
-            if (chromiumPackageSaber != null) {
-                grantRuntimePermissionsLPw(chromiumPackageSaber, CONTACTS_PERMISSIONS, userId);
+                if (wearHomePackage != null
+                        && doesPackageSupportRuntimePermissions(wearHomePackage)) {
+                    grantRuntimePermissionsLPw(wearHomePackage, CONTACTS_PERMISSIONS, false,
+                            userId);
+                    grantRuntimePermissionsLPw(wearHomePackage, PHONE_PERMISSIONS, true, userId);
+                    grantRuntimePermissionsLPw(wearHomePackage, MICROPHONE_PERMISSIONS, false,
+                            userId);
+                    grantRuntimePermissionsLPw(wearHomePackage, LOCATION_PERMISSIONS, false,
+                            userId);
+                }
             }
 
             // Google Account
@@ -633,7 +630,7 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(gmscorePackage, STORAGE_PERMISSIONS, userId);
             }
 
-	        // Google Connectivity Services
+            // Google Connectivity Services
             PackageParser.Package gcsPackage = getDefaultProviderAuthorityPackageLPr(
                     "com.google.android.apps.gcs", userId);
             if (gcsPackage != null) {
@@ -641,37 +638,37 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(gcsPackage, LOCATION_PERMISSIONS, userId);
             }
 
-	        // Google Contacts Sync
+            // Google Contacts Sync
             PackageParser.Package googlecontactssyncPackage = getDefaultProviderAuthorityPackageLPr(
                     "com.google.android.syncadapters.contacts", userId);
             if (googlecontactssyncPackage != null) {
                 grantRuntimePermissionsLPw(googlecontactssyncPackage, CONTACTS_PERMISSIONS, userId);
-            }			
+            }
 
-			// Google Backup Transport
+            // Google Backup Transport
             PackageParser.Package googlebackuptransportPackage = getDefaultProviderAuthorityPackageLPr(
                     "com.google.android.backuptransport", userId);
             if (googlebackuptransportPackage != null) {
                 grantRuntimePermissionsLPw(googlebackuptransportPackage, CONTACTS_PERMISSIONS, userId);
-            }			
-			
-			// Google Play Framework
+            }
+
+            // Google Play Framework
             PackageParser.Package gsfcorePackage = getDefaultProviderAuthorityPackageLPr(
                     "com.google.android.gsf", userId);
             if (gsfcorePackage != null) {
                 grantRuntimePermissionsLPw(gsfcorePackage, CONTACTS_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(gsfcorePackage, PHONE_PERMISSIONS, userId);
-            }		
+            }
 
-			// Google Setup Wizard
+            // Google Setup Wizard
             PackageParser.Package setupwizardPackage = getDefaultProviderAuthorityPackageLPr(
                     "com.google.android.setupwizard", userId);
             if (setupwizardPackage != null) {
                 grantRuntimePermissionsLPw(setupwizardPackage, CONTACTS_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(setupwizardPackage, PHONE_PERMISSIONS, userId);
-            }	
+            }
 
-			// Google Play Store
+            // Google Play Store
             PackageParser.Package vendingPackage = getDefaultProviderAuthorityPackageLPr(
                     "com.android.vending", userId);
             if (vendingPackage != null) {
@@ -679,34 +676,6 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(vendingPackage, PHONE_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(vendingPackage, LOCATION_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(vendingPackage, SMS_PERMISSIONS, userId);
-            }
-
-            // ContactsProvider2
-            PackageParser.Package conpro2Package = getDefaultProviderAuthorityPackageLPr(
-                    "com.android.providers.contacts.ContactsProvider2", userId);
-            if (gmscorePackage != null) {
-                grantRuntimePermissionsLPw(conpro2Package, CONTACTS_PERMISSIONS, true, userId);
-                grantRuntimePermissionsLPw(conpro2Package, STORAGE_PERMISSIONS, true, userId);
-            }
-
-            // Android Wear Home
-            if (mService.hasSystemFeature(PackageManager.FEATURE_WATCH)) {
-                Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                homeIntent.addCategory(Intent.CATEGORY_HOME_MAIN);
-
-                PackageParser.Package wearHomePackage = getDefaultSystemHandlerActivityPackageLPr(
-                        homeIntent, userId);
-
-                if (wearHomePackage != null
-                        && doesPackageSupportRuntimePermissions(wearHomePackage)) {
-                    grantRuntimePermissionsLPw(wearHomePackage, CONTACTS_PERMISSIONS, false,
-                            userId);
-                    grantRuntimePermissionsLPw(wearHomePackage, PHONE_PERMISSIONS, true, userId);
-                    grantRuntimePermissionsLPw(wearHomePackage, MICROPHONE_PERMISSIONS, false,
-                            userId);
-                    grantRuntimePermissionsLPw(wearHomePackage, LOCATION_PERMISSIONS, false,
-                            userId);
-                }
             }
 
             mService.mSettings.onDefaultRuntimePermissionsGrantedLPr(userId);
@@ -816,23 +785,29 @@ final class DefaultPermissionGrantPolicy {
 
     private PackageParser.Package getDefaultSystemHandlerActivityPackageLPr(
             Intent intent, int userId) {
-        ResolveInfo handler = mService.resolveIntent(intent,
-                intent.resolveType(mService.mContext.getContentResolver()), 0, userId);
-        if (handler == null || handler.activityInfo == null) {
+        List<ResolveInfo> handlers = mService.mActivities.queryIntent(intent,
+                intent.resolveType(mService.mContext.getContentResolver()),
+                PackageManager.GET_DISABLED_COMPONENTS, userId);
+        if (handlers == null) {
             return null;
         }
-        ActivityInfo activityInfo = handler.activityInfo;
-        if (activityInfo.packageName.equals(mService.mResolveActivity.packageName)
-                && activityInfo.name.equals(mService.mResolveActivity.name)) {
-            return null;
+        final int handlerCount = handlers.size();
+        for (int i = 0; i < handlerCount; i++) {
+            ResolveInfo handler = handlers.get(i);
+            PackageParser.Package handlerPackage = getSystemPackageLPr(
+                    handler.activityInfo.packageName);
+            if (handlerPackage != null) {
+                return handlerPackage;
+            }
         }
-        return getSystemPackageLPr(handler.activityInfo.packageName);
+        return null;
     }
 
     private PackageParser.Package getDefaultSystemHandlerServicePackageLPr(
             Intent intent, int userId) {
         List<ResolveInfo> handlers = mService.queryIntentServices(intent,
-                intent.resolveType(mService.mContext.getContentResolver()), 0, userId);
+                intent.resolveType(mService.mContext.getContentResolver()),
+                PackageManager.GET_DISABLED_COMPONENTS, userId);
         if (handlers == null) {
             return null;
         }
@@ -858,9 +833,10 @@ final class DefaultPermissionGrantPolicy {
         for (String syncAdapterPackageName : syncAdapterPackageNames) {
             homeIntent.setPackage(syncAdapterPackageName);
 
-            ResolveInfo homeActivity = mService.resolveIntent(homeIntent,
-                    homeIntent.resolveType(mService.mContext.getContentResolver()), 0, userId);
-            if (homeActivity != null) {
+            List<ResolveInfo> homeActivities = mService.mActivities.queryIntent(homeIntent,
+                    homeIntent.resolveType(mService.mContext.getContentResolver()),
+                    PackageManager.GET_DISABLED_COMPONENTS, userId);
+            if (!homeActivities.isEmpty()) {
                 continue;
             }
 
@@ -955,8 +931,8 @@ final class DefaultPermissionGrantPolicy {
 
                     mService.grantRuntimePermission(pkg.packageName, permission, userId);
                     if (DEBUG) {
-                        Log.i(TAG, "Granted " + (systemFixed ? "fixed " : "not fixed ")
-                                + permission + " to default handler " + pkg.packageName);
+                        Log.i(TAG, "Granted " + permission + " to default handler "
+                                + pkg.packageName);
                     }
 
                     int newFlags = PackageManager.FLAG_PERMISSION_GRANTED_BY_DEFAULT;
@@ -966,19 +942,6 @@ final class DefaultPermissionGrantPolicy {
 
                     mService.updatePermissionFlags(permission, pkg.packageName,
                             newFlags, newFlags, userId);
-                }
-
-                // If a component gets a permission for being the default handler A
-                // and also default handler B, we grant the weaker grant form.
-                if ((flags & PackageManager.FLAG_PERMISSION_GRANTED_BY_DEFAULT) != 0
-                        && (flags & PackageManager.FLAG_PERMISSION_SYSTEM_FIXED) != 0
-                        && !systemFixed) {
-                    if (DEBUG) {
-                        Log.i(TAG, "Granted not fixed " + permission + " to default handler "
-                                + pkg.packageName);
-                    }
-                    mService.updatePermissionFlags(permission, pkg.packageName,
-                            PackageManager.FLAG_PERMISSION_SYSTEM_FIXED, 0, userId);
                 }
             }
         }
@@ -992,7 +955,7 @@ final class DefaultPermissionGrantPolicy {
             return false;
         }
         PackageSetting sysPkg = mService.mSettings.getDisabledSystemPkgLPr(pkg.packageName);
-        if (sysPkg != null && sysPkg.pkg != null) {
+        if (sysPkg != null) {
             if ((sysPkg.pkg.applicationInfo.flags & ApplicationInfo.FLAG_PERSISTENT) == 0) {
                 return false;
             }
