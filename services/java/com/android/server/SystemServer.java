@@ -563,7 +563,6 @@ public final class SystemServer {
         CountryDetectorService countryDetector = null;
         TextServicesManagerService tsms = null;
         LockSettingsService lockSettings = null;
-        AssetAtlasService atlas = null;
         MediaRouterService mediaRouter = null;
         ThemeService themeService = null;
         EdgeGestureService edgeGestureService = null;
@@ -961,16 +960,6 @@ public final class SystemServer {
             }
 
             if (!disableNonCoreServices) {
-                try {
-                    Slog.i(TAG, "Assets Atlas Service");
-                    atlas = new AssetAtlasService(context);
-                    ServiceManager.addService(AssetAtlasService.ASSET_ATLAS_SERVICE, atlas);
-                } catch (Throwable e) {
-                    reportWtf("starting AssetAtlasService", e);
-                }
-            }
-
-            if (!disableNonCoreServices) {
                 ServiceManager.addService(GraphicsStatsService.GRAPHICS_STATS_SERVICE,
                         new GraphicsStatsService(context));
             }
@@ -1157,7 +1146,6 @@ public final class SystemServer {
         final CommonTimeManagementService commonTimeMgmtServiceF = commonTimeMgmtService;
         final TextServicesManagerService textServiceManagerServiceF = tsms;
         final StatusBarManagerService statusBarF = statusBar;
-        final AssetAtlasService atlasF = atlas;
         final InputManagerService inputManagerF = inputManager;
         final TelephonyRegistry telephonyRegistryF = telephonyRegistry;
         final MediaRouterService mediaRouterF = mediaRouter;
@@ -1265,11 +1253,6 @@ public final class SystemServer {
                         textServiceManagerServiceF.systemRunning();
                 } catch (Throwable e) {
                     reportWtf("Notifying TextServicesManagerService running", e);
-                }
-                try {
-                    if (atlasF != null) atlasF.systemRunning();
-                } catch (Throwable e) {
-                    reportWtf("Notifying AssetAtlasService running", e);
                 }
                 try {
                     // TODO(BT) Pass parameter to input manager
