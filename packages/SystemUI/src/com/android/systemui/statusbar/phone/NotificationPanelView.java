@@ -237,6 +237,7 @@ public class NotificationPanelView extends PanelView implements
     private final Interpolator mTouchResponseInterpolator =
             new PathInterpolator(0.3f, 0f, 0.1f, 1f);
 
+
     // QS alpha
     private int mQSShadeAlpha;
 
@@ -262,6 +263,7 @@ public class NotificationPanelView extends PanelView implements
         mQsPanel = (QSPanel) findViewById(R.id.quick_settings_panel);
         mClockView = (TextView) findViewById(R.id.clock_view);
         mScrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
+        mScrollView.setListener(this);
         mScrollView.setFocusable(false);
         mReserveNotificationSpace = findViewById(R.id.reserve_notification_space);
         mNotificationContainerParent = (NotificationsQuickSettingsContainer)
@@ -295,11 +297,7 @@ public class NotificationPanelView extends PanelView implements
                 }
             }
         });
-		
-	setQSBackgroundAlpha();
-
-        mScrollView.setListener(this);
-    }
+        setQSBackgroundAlpha();
 
     @Override
     protected void loadDimens() {
@@ -2560,24 +2558,24 @@ public class NotificationPanelView extends PanelView implements
             ContentResolver resolver = mContext.getContentResolver();
             mOneFingerQuickSettingsIntercept = Settings.System.getIntForUser(resolver,
                     Settings.System.QS_QUICK_PULLDOWN, 0, UserHandle.USER_CURRENT);
-	    mStatusBarLockedOnSecureKeyguard = Settings.Secure.getIntForUser(
+	        mStatusBarLockedOnSecureKeyguard = Settings.Secure.getIntForUser(
                     resolver, Settings.Secure.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD, 0,
                     UserHandle.USER_CURRENT) == 1;
-	    mQSShadeAlpha = Settings.System.getInt(
+	        mQSShadeAlpha = Settings.System.getInt(
                     resolver, Settings.System.QS_TRANSPARENT_SHADE, 255);
-	    mQsSmartPullDown = Settings.System.getIntForUser(
+	        mQsSmartPullDown = Settings.System.getIntForUser(
                     resolver, Settings.System.QS_SMART_PULLDOWN, 0,
                     UserHandle.USER_CURRENT);			
             setQSBackgroundAlpha();			
         }
     }
 	
-	 private void setQSBackgroundAlpha() {
-        if (mQsContainer != null) {
-            mQsContainer.getBackground().setAlpha(mQSShadeAlpha);
-        }
-        if (mQsPanel != null) {
-            mQsPanel.setQSShadeAlphaValue(mQSShadeAlpha);
-        }
+	private void setQSBackgroundAlpha() {
+       if (mQsContainer != null) {
+           mQsContainer.getBackground().setAlpha(mQSShadeAlpha);
+       }
+       if (mQsPanel != null) {
+           mQsPanel.setQSShadeAlphaValue(mQSShadeAlpha);
+       }
     }
 }
