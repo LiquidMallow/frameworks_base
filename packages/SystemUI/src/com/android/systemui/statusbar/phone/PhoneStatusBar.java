@@ -40,7 +40,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.ThemeChangeRequest.RequestType;
 import android.content.res.ThemeConfig;
@@ -345,7 +344,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // expanded notifications
     NotificationPanelView mNotificationPanel; // the sliding/resizing panel within the notification window
     View mExpandedContents;
-    TextView mNotificationPanelDebugText;
+    //TextView mNotificationPanelDebugText;
 
     // settings
     private QSPanel mQSPanel;
@@ -410,7 +409,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // for disabling the status bar
     int mDisabled1 = 0;
     int mDisabled2 = 0;
-    boolean mDisableHomeLongpress;
 
     // tracking calls to View.setSystemUiVisibility()
     int mSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE;
@@ -537,7 +535,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.RECENT_CARD_BG_COLOR))
                     || uri.equals(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR))) {
-                rebuildRecentsScreen();		
+                rebuildRecentsScreen();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_BUTTON_TINT))
                 || uri.equals(Settings.System.getUriFor(
@@ -592,7 +590,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
             }
 
-			boolean mShow4G = Settings.System.getIntForUser(resolver,
+	    boolean mShow4G = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
 
             mMaxKeyguardNotifConfig = Settings.System.getIntForUser(resolver,
@@ -959,11 +957,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mStatusBarView = (PhoneStatusBarView) mStatusBarWindowContent.findViewById(R.id.status_bar);
         mStatusBarView.setBar(this);
 
-        PanelHolder holder = (PanelHolder) mStatusBarWindowContent.findViewById(R.id.panel_holder);
-
         mPackageMonitor = new DUPackageMonitor();
         mPackageMonitor.register(mContext, mHandler);
 
+        PanelHolder holder = (PanelHolder) mStatusBarWindowContent.findViewById(R.id.panel_holder);
         mStatusBarView.setPanelHolder(holder);
 
         mNotificationPanel = (NotificationPanelView) mStatusBarWindowContent.findViewById(
@@ -985,11 +982,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNotificationPanel.setHeadsUpManager(mHeadsUpManager);
         mNotificationData.setHeadsUpManager(mHeadsUpManager);
 
-        if (MULTIUSER_DEBUG) {
+        /*if (MULTIUSER_DEBUG) {
             mNotificationPanelDebugText = (TextView) mNotificationPanel.findViewById(
                     R.id.header_debug_info);
             mNotificationPanelDebugText.setVisibility(View.VISIBLE);
-        }
+        }*/
 
         try {
             boolean showNav = mWindowManagerService.hasNavigationBar();
@@ -1021,8 +1018,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         } catch (RemoteException ex) {
             // no window manager? good luck with that
         }
-		
-	if (!mRecreating) {
+
+        if (!mRecreating) {
             addGestureAnywhereView();
             addAppCircleSidebar();
             addSidebarView();
@@ -1261,7 +1258,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
             mQSPanel.setBrightnessMirror(mBrightnessMirrorController);
             mHeader.setQSPanel(mQSPanel);
-            mKeyguardStatusBar.setQSPanel(mQSPanel);
             mQSTileHost.setCallback(new QSTileHost.Callback() {
                 @Override
                 public void onTilesChanged() {
@@ -1295,7 +1291,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         // receive broadcasts
         IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
         filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
@@ -1318,8 +1313,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         // Private API call to make the shadows look better for Recents
         ThreadedRenderer.overrideProperty("ambientRatio", String.valueOf(1.5f));
-		
-		mStatusBarHeaderMachine = new StatusBarHeaderMachine(mContext);
+
+        mStatusBarHeaderMachine = new StatusBarHeaderMachine(mContext);
         mStatusBarHeaderMachine.addObserver(mHeader);
         mStatusBarHeaderMachine.updateEnablement();
         return mStatusBarView;
@@ -3617,7 +3612,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     @Override
     public void userSwitched(int newUserId) {
         super.userSwitched(newUserId);
-        if (MULTIUSER_DEBUG) mNotificationPanelDebugText.setText("USER " + newUserId);
+        //if (MULTIUSER_DEBUG) mNotificationPanelDebugText.setText("USER " + newUserId);
         animateCollapsePanels();
         updatePublicMode();
         updateNotifications();
