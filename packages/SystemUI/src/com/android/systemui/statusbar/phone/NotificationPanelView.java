@@ -298,6 +298,7 @@ public class NotificationPanelView extends PanelView implements
             }
         });
         setQSBackgroundAlpha();
+    }
 
     @Override
     protected void loadDimens() {
