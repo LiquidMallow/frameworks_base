@@ -418,6 +418,7 @@
     <string name="shortcut_volume">Volume Panel</string>
     <string name="shortcut_restart_ui">Restart SystemUI</string>
     <string name="shortcut_torch">Torch</string>
+    <string name="shortcut_clear_notifications">Clear notifications</string>
 
     <!-- Off/On/Toggle -->
     <string name="off">Off</string>
