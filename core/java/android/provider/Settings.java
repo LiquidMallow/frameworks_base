@@ -5021,7 +5021,7 @@ public final class Settings {
          */
         public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
 
-	/**
+	    /**
          * @hide
          */
         public static final String LOCK_SCREEN_VISUALIZER_SHOW = "lock_screen_visualizer_show";
@@ -5038,7 +5038,7 @@ public final class Settings {
          */
         public static final String LOCK_SCREEN_VISUALIZER_CUSTOM_COLOR = "lock_screen_visualizer_custom_color";
 
-	/**
+	    /**
          * Whether the phone volume up / down effect should be played
          * @hide
          */
@@ -5093,6 +5093,29 @@ public final class Settings {
          * @hide
          */
         public static final String SCREENSHOT_CROP_BEHAVIOR = "screenshot_crop_behavior";
+
+        /**
+         * Volume dialog stroke
+         * 0 = disabled
+         * 1 = use accent color (default)
+         * 2 = use custom color
+         * @hide
+         */
+        public static final String VOLUME_DIALOG_STROKE = "volume_dialog_stroke";
+
+        /**
+         * Volume dialog stroke custom color
+         * Accent color is used as default
+         * @hide
+         */
+        public static final String VOLUME_DIALOG_STROKE_COLOR = "volume_dialog_stroke_color";
+
+        /**
+         * Volume dialog stroke custom thickness
+         * 4dp is default for AICP
+         * @hide
+         */
+        public static final String VOLUME_DIALOG_STROKE_THICKNESS = "volume_dialog_stroke_thickness";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
