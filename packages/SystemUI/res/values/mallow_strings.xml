@@ -166,10 +166,10 @@
     <string name="accessibility_quick_settings_sync_off">Sync off.</string>
     <!-- Content description of the sync tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_sync_on">Sync on.</string>
-    
+
     <!-- Content description of the KernelAdiutor tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_kernel_adiutor">Kernel.</string>
-    
+
     <!-- Content description of the caffeine tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_caffeine_off">Caffeine off.</string>
     <!-- Content description of the caffeine tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
@@ -438,5 +438,9 @@
 
     <!-- Path data for circle battery -->
     <string name="battery_circle_path" translatable="false">M 12 3.5 C 16.6944203736 3.5 20.5 7.30557962644 20.5 12 C 20.5 16.6944203736 16.6944203736 20.5 12 20.5 C 7.30557962644 20.5 3.5 16.6944203736 3.5 12 C 3.5 7.30557962644 7.30557962644 3.5 12 3.5 Z</string>
+
+    <!-- Slim recents app sidebar queue app toast -->
+    <string name="toast_recents_queue_app">Launch %s after closing recents</string>
+    <string name="toast_recents_cancel_queued_app">Cancelled app launch</string>
 
 </resources>
