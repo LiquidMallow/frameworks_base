@@ -113,6 +113,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private View mHeadsUpButton;
     private boolean mShowHeadsUpButton;
     private boolean mHeadsUpEnabled;
+    private boolean mShowhaloButton;
 
     private boolean mShowEmergencyCallsOnly;
     private boolean mAlarmShowing;
@@ -203,6 +204,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 		mSettingsButton.setOnLongClickListener(this);
         mHaloButton = findViewById(R.id.halo_button);
         mHaloButton.setOnClickListener(this);
+        mHaloButton.setOnLongClickListener(this);
         mHeadsUpButton = findViewById(R.id.heads_up_button);
         mHeadsUpButton.setOnClickListener(this);
         mHeadsUpButton.setOnLongClickListener(this);
@@ -405,7 +407,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mAlarmStatus.setVisibility(mExpanded && mAlarmShowing ? View.VISIBLE : View.INVISIBLE);
         mSettingsButton.setVisibility(mExpanded ? View.VISIBLE : View.INVISIBLE);
         mQsDetailHeader.setVisibility(mExpanded && mShowingDetail ? View.VISIBLE : View.INVISIBLE);
-        mHaloButton.setVisibility(mExpanded ? View.VISIBLE : View.INVISIBLE);
+	    mHaloButton.setVisibility(mExpanded && mShowhaloButton ? View.VISIBLE : mShowhaloButton ? View.INVISIBLE : View.GONE);
         mHeadsUpButton.setVisibility(mExpanded && mShowHeadsUpButton ? View.VISIBLE : mShowHeadsUpButton ? View.INVISIBLE : View.GONE);
         mQsDetailHeader.setVisibility(mExpanded && mShowingDetail ? View.VISIBLE : View.GONE);
         if (mSignalCluster != null) {
@@ -622,8 +624,8 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             startThemeHeadersActivity();
         } else if (v == mHeadsUpButton) {
             startHeadsUpLongClickActivity();
-        } else if (v == mHaloButton) {
-            toggleHalo();
+        }  else if (v == mHaloButton) {
+            halolongclick();
         }
         return false;
     }
@@ -690,6 +692,13 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mActivityStarter.startActivity(intent, true /* dismissShade */);
     }
 
+    private void halolongclick() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.android.settings",
+            "com.android.settings.Settings$HaloSettingsActivity");
+        mActivityStarter.startActivity(intent, true /* dismissShade */);
+    }
+
     private void startHeadsUpActivity() {
         Settings.Global.putInt(mContext.getContentResolver(),
             Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED,
@@ -745,42 +754,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     protected void dispatchSetPressed(boolean pressed) {
         // We don't want that everything lights up when we click on the header, so block the request
         // here.
-    }
-
-    private void captureLayoutValues(LayoutValues target) {
-        target.timeScale = mExpanded ? 1f : mClockCollapsedScaleFactor;
-        target.clockY = mClock.getBottom();
-        target.dateY = mDateGroup.getTop();
-        target.emergencyCallsOnlyAlpha = getAlphaForVisibility(mEmergencyCallsOnly);
-        target.alarmStatusAlpha = getAlphaForVisibility(mAlarmStatus);
-        target.dateCollapsedAlpha = getAlphaForVisibility(mDateCollapsed);
-        target.dateExpandedAlpha = getAlphaForVisibility(mDateExpanded);
-        target.avatarScale = mMultiUserAvatar.getScaleX();
-        target.avatarX = mMultiUserSwitch.getLeft() + mMultiUserAvatar.getLeft();
-        target.avatarY = mMultiUserSwitch.getTop() + mMultiUserAvatar.getTop();
-        if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
-            target.batteryX = mSystemIconsSuperContainer.getLeft()
-                    + mSystemIconsContainer.getRight();
-        } else {
-            target.batteryX = mSystemIconsSuperContainer.getLeft()
-                    + mSystemIconsContainer.getLeft();
-        }
-        target.batteryY = mSystemIconsSuperContainer.getTop() + mSystemIconsContainer.getTop();
-        target.batteryLevelAlpha = getAlphaForVisibility(mBatteryLevel);
-        target.headsUpAlpha = getAlphaForVisibility(mHeadsUpButton);
-        target.settingsAlpha = getAlphaForVisibility(mSettingsButton);
-        target.settingsTranslation = mExpanded
-                ? 0
-                : mMultiUserSwitch.getLeft() - mSettingsButton.getLeft();
-
-        if (mHeadsUpButton != null) {
-            target.headsUpTranslation = mExpanded
-                    ? 0
-                    :  mSettingsButton.getLeft() - mHeadsUpButton.getLeft();
-        }
-
-        target.signalClusterAlpha = mSignalClusterDetached ? 0f : 1f;
-        target.settingsRotation = !mExpanded ? 90f : 0f;
     }
 
     private void captureLayoutValues(LayoutValues target) {
@@ -924,6 +897,8 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         float settingsAlpha;
         float settingsTranslation;
         float signalClusterAlpha;
+        float haloButtonAlpha;
+        float haloButtonTranslation;
         float settingsRotation;
 
         public void interpoloate(LayoutValues v1, LayoutValues v2, float t) {
@@ -1028,7 +1003,8 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 if (toggleState == null) {
                     mQsDetailHeaderSwitch.setVisibility(INVISIBLE);
                     mQsDetailHeader.setClickable(false);
-                } else {
+                } e        float haloButtonAlpha;
+        float haloButtonTranslation;lse {
                     mQsDetailHeaderSwitch.setVisibility(VISIBLE);
                     mQsDetailHeaderSwitch.setChecked(toggleState);
                     mQsDetailHeader.setClickable(true);
@@ -1120,9 +1096,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             boolean showExpandedBatteryPercentage = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, 0, currentUserId) == 0;
 
-            mHeadsUpEnabled = Settings.Global.getInt(
-                    resolver, Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED, 1) == 1;
-
             switch (batteryStyle) {
                 case 4: //BATTERY_METER_GONE
                 case 6: //BATTERY_METER_TEXT
@@ -1134,13 +1107,16 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
             mShowBatteryTextExpanded = showExpandedBatteryPercentage;
 
-            mQSHeaderAlpha = Settings.System.getInt(
-                    resolver, Settings.System.QS_TRANSPARENT_HEADER, 255);
+            mQSHeaderAlpha = Settings.System.getInt(getContentResolver()
+                    Settings.System.QS_TRANSPARENT_HEADER, 255);
 
             mShowHeadsUpButton = Settings.System.getInt(getContentResolver(),
                     Settings.System.HEADS_UP_SHOW_STATUS_BUTTON, 0) == 1;
 
-			headerShadow = Settings.System.getIntForUser(getContentResolver(),
+	        mShowhaloButton = Settings.Secure.getInt(mContext.getContentResolver(),
+                    Settings.Secure.HALO_ENABLE, 0) == 1;
+
+			headerShadow = Settings.System.getIntForUser(mContext.getContentResolver(),
                     Settings.System.STATUS_BAR_CUSTOM_HEADER_SHADOW, 0,
                     UserHandle.USER_CURRENT);
 
@@ -1159,6 +1135,13 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         if (mHeaderView != null) {
             mHeaderView.getBackground().setAlpha(mQSHeaderAlpha);
         }
+    }
+
+    private void updateStatusBarButtonsState() {
+        mShowHeadsUpButton = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.HEADS_UP_SHOW_STATUS_BUTTON, 0, ActivityManager.getCurrentUser()) == 1;
+	    mShowhaloButton = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.HALO_ENABLE, 0, ActivityManager.getCurrentUser()) == 1;
     }
 
     private void updateHeadsUpButton() {
@@ -1213,7 +1196,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             ColorDrawable shadow = new ColorDrawable(Color.BLACK);
             shadow.setAlpha(0);
             mBackgroundImage.setForeground(shadow);
-	    disableTextShadow();
+	        disableTextShadow();
         }
     }
 
