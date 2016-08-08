@@ -436,16 +436,21 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mSystemIcons.addView(mSignalCluster, 1);
     }
 
-    private void updateSystemIconsLayoutParams() {
+
+  private void updateSystemIconsLayoutParams() {
         RelativeLayout.LayoutParams lp = (LayoutParams) mSystemIconsSuperContainer.getLayoutParams();
         int halo = mHaloButton != null ? mHaloButton.getId() : mSettingsButton.getId();
         int headsUp = mShowHeadsUpButton && mExpanded ? mHeadsUpButton.getId() : halo;
-        int ruleHalo = mExpanded ? halo : mMultiUserSwitch.getId();
-        int ruleHeadsUpButton = mExpanded
+        int ruleHalo = mExpanded
                 ? halo
                 : mMultiUserSwitch.getId();
-        if (ruleHeadsUpButton != lp.getRules()[RelativeLayout.START_OF]) {
-            lp.addRule(RelativeLayout.START_OF, ruleHeadsUpButton);
+        int ruleHeadsUpButton = mExpanded
+                ? headsUp
+                : mMultiUserSwitch.getId();
+        if (ruleHeadsUpButton != lp.getRules()[RelativeLayout.START_OF] &&
+	        ruleHalo != lp.getRules()[RelativeLayout.START_OF]) {
+	            lp.addRule(RelativeLayout.START_OF, ruleHalo);
+                lp.addRule(RelativeLayout.START_OF, ruleHeadsUpButton);
         }
         mSystemIconsSuperContainer.setLayoutParams(lp);
     }
@@ -785,14 +790,14 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         target.haloButtonTranslation = mExpanded
                 ? 0
                 : mSettingsButton.getLeft() - mHaloButton.getLeft();
-        // heads up may translate off of halo OR settings button
+        // heads up MAY translate off of halo OR settings button
         final int whichButton = mShowHeadsUpButton
-                ? mHaloButton.getLeft()
-                : mSettingsButton.getLeft();
+                ? mHeadsUpButton.getLeft()
+		: mSettingsButton.getLeft();
         target.headsUpAlpha = getAlphaForVisibility(mHeadsUpButton);
         target.headsUpTranslation = mExpanded
                 ? 0
-                : whichButton - mHaloButton.getLeft();
+                : whichButton - mHeadsUpButton.getLeft();
         target.signalClusterAlpha = mSignalClusterDetached ? 0f : 1f;
         target.settingsRotation = !mExpanded ? 90f : 0f;
     }
@@ -848,10 +853,10 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mSettingsButton.setTranslationX(values.settingsTranslation);
         mSettingsButton.setRotation(values.settingsRotation);
         mHaloButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-        mHaloButton.setTranslationX(values.headsUpTranslation);
+        mHaloButton.setTranslationX(values.haloButtonTranslation);
         mHaloButton.setRotation(values.settingsRotation);
         mHeadsUpButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-        mHeadsUpButton.setTranslationX(values.headsUpTranslation);
+        mHeadsUpButton.setTranslationX(values.haloButtonTranslation);
         mHeadsUpButton.setRotation(values.settingsRotation);
         applyAlpha(mEmergencyCallsOnly, values.emergencyCallsOnlyAlpha);
         if (!mShowingDetail && !mDetailTransitioning) {
@@ -926,10 +931,11 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
             float t3 = Math.max(0, t - 0.7f) / 0.3f;
             batteryLevelAlpha = v1.batteryLevelAlpha * (1 - t3) + v2.batteryLevelAlpha * t3;
-            batteryLevelExpandedAlpha =
+	        batteryLevelExpandedAlpha =
                     v1.batteryLevelExpandedAlpha * (1 - t3) + v2.batteryLevelExpandedAlpha * t3;
 
-            headsUpAlpha = v1.headsUpAlpha * (1 - t3) + v2.headsUpAlpha * t3;
+	        headsUpAlpha = v1.headsUpAlpha * (1 - t3) + v2.headsUpAlpha * t3;
+            haloButtonAlpha = v1.haloButtonAlpha * (1 - t3) + v2.haloButtonAlpha * t3;
             settingsAlpha = v1.settingsAlpha * (1 - t3) + v2.settingsAlpha * t3;
             dateExpandedAlpha = v1.dateExpandedAlpha * (1 - t3) + v2.dateExpandedAlpha * t3;
             dateCollapsedAlpha = v1.dateCollapsedAlpha * (1 - t3) + v2.dateCollapsedAlpha * t3;
@@ -1003,8 +1009,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 if (toggleState == null) {
                     mQsDetailHeaderSwitch.setVisibility(INVISIBLE);
                     mQsDetailHeader.setClickable(false);
-                } e        float haloButtonAlpha;
-        float haloButtonTranslation;lse {
+                } else {
                     mQsDetailHeaderSwitch.setVisibility(VISIBLE);
                     mQsDetailHeaderSwitch.setChecked(toggleState);
                     mQsDetailHeader.setClickable(true);
@@ -1107,16 +1112,16 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
             mShowBatteryTextExpanded = showExpandedBatteryPercentage;
 
-            mQSHeaderAlpha = Settings.System.getInt(getContentResolver()
+            mQSHeaderAlpha = Settings.System.getInt(getContentResolver(),
                     Settings.System.QS_TRANSPARENT_HEADER, 255);
 
             mShowHeadsUpButton = Settings.System.getInt(getContentResolver(),
                     Settings.System.HEADS_UP_SHOW_STATUS_BUTTON, 0) == 1;
 
-	        mShowhaloButton = Settings.Secure.getInt(mContext.getContentResolver(),
+	        mShowhaloButton = Settings.Secure.getInt(getContentResolver(),
                     Settings.Secure.HALO_ENABLE, 0) == 1;
 
-			headerShadow = Settings.System.getIntForUser(mContext.getContentResolver(),
+			headerShadow = Settings.System.getIntForUser(getContentResolver(),
                     Settings.System.STATUS_BAR_CUSTOM_HEADER_SHADOW, 0,
                     UserHandle.USER_CURRENT);
 
