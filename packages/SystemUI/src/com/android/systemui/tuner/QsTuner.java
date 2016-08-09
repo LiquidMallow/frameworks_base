@@ -236,6 +236,7 @@ public class QsTuner extends Fragment implements Callback {
 	    else if (spec.equals("screenrecord")) return R.string.quick_settings_screenrecord_label;
         else if (spec.equals("v4a")) return R.string.quick_settings_v4a_label;
         else if (spec.equals("visualizer")) return R.string.quick_settings_visualizer_label;
+        else if (spec.equals("halo")) return R.string.quick_settings_halo_on;
         return 0;
     }
 
@@ -504,6 +505,7 @@ public class QsTuner extends Fragment implements Callback {
 	        else if (mSpec.equals("screenrecord")) return R.drawable.ic_qs_screenrecord;
             else if (mSpec.equals("v4a")) return R.drawable.ic_qs_v4a;
 	        else if (mSpec.equals("visualizer")) return R.drawable.ic_qs_visualizer_static;
+            else if (mSpec.equals("halo")) return R.drawable.ic_notify_halo_normal;
             return R.drawable.android;
         }
 
