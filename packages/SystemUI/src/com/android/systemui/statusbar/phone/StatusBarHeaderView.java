@@ -101,6 +101,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private View mSignalCluster;
     private View mSettingsButton;
     private View mHaloButton;
+    private boolean mHaloActive;
     private View mQsDetailHeader;
     private TextView mQsDetailHeaderTitle;
     private Switch mQsDetailHeaderSwitch;
@@ -1050,6 +1051,11 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         }
     };
 
+    private void toggleHalo() {
+        Settings.Secure.putInt(mContext.getContentResolver(),
+                Settings.Secure.HALO_ACTIVE, !mHaloActive ? 1 : 0);
+    }
+
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
@@ -1074,7 +1080,10 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED),
-                    false, this);
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.HALO_ACTIVE),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -1112,20 +1121,24 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
             mShowBatteryTextExpanded = showExpandedBatteryPercentage;
 
-            mQSHeaderAlpha = Settings.System.getInt(getContentResolver(),
+            mQSHeaderAlpha = Settings.System.getInt(resolver,
                     Settings.System.QS_TRANSPARENT_HEADER, 255);
 
-            mShowHeadsUpButton = Settings.System.getInt(getContentResolver(),
+            mShowHeadsUpButton = Settings.System.getInt(resolver,
                     Settings.System.HEADS_UP_SHOW_STATUS_BUTTON, 0) == 1;
 
-	        mShowhaloButton = Settings.Secure.getInt(getContentResolver(),
+	        mShowhaloButton = Settings.Secure.getInt(resolver,
                     Settings.Secure.HALO_ENABLE, 0) == 1;
 
-			headerShadow = Settings.System.getIntForUser(getContentResolver(),
+            mHaloActive = Settings.Secure.getInt(resolver,
+                    Settings.Secure.HALO_ACTIVE, 0) == 1;
+            mHaloButton.setActivated(mHaloActive);
+
+			headerShadow = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_CUSTOM_HEADER_SHADOW, 0,
                     UserHandle.USER_CURRENT);
 
-            customHeader = Settings.System.getIntForUser(getContentResolver(),
+            customHeader = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_CUSTOM_HEADER, 0,
                     UserHandle.USER_CURRENT);
 
